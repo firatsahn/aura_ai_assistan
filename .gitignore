@@ -4,6 +4,9 @@ brief.pdf
 doc/
 *.Zone.Identifier
 
+DECISIONS.md
+DECISIONS.tr.md
+
 # ----------------------------------------------------------------------------
 # Environment variables and secrets
 # ----------------------------------------------------------------------------
@@ -49,6 +52,11 @@ yarn-error.log*
 # ----------------------------------------------------------------------------
 data/
 storage/
+
+# Ingestion output (generated chunk list — Step 1)
+chunks.jsonl
+chunks.json
+
 *.sqlite
 *.sqlite3
 *.duckdb
