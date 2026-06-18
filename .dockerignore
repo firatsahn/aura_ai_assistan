@@ -13,7 +13,12 @@ __pycache__/
 .env.*
 !.env.example
 
+# Keep the build context small, but let the two prebuilt artifacts the image
+# needs through: the chunk list (Step 2 indexing) and the eval results (/metrics).
 data/
+!data/chunks.jsonl
+eval/
+!eval/results.json
 doc/
 brief.pdf
 *.log

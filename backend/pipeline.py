@@ -25,10 +25,11 @@ from typing import Any
 
 from dotenv import load_dotenv
 
-from backend.embedding import embed
+from backend.embedding import EMBEDDING_MODEL, embed
 from backend.generation import generate
+from backend.generation.client import GENERATION_MODEL, _format_context
 from backend.sparse import encode_query
-from backend.vectorstore import get_client, search
+from backend.vectorstore import SearchHit, get_client, search
 
 load_dotenv()
 
@@ -37,9 +38,12 @@ ABSTENTION_THRESHOLD = float(os.environ.get("ABSTENTION_THRESHOLD", "0.38"))
 # Fixed message so abstention is recognizable to callers (frontend / eval).
 ABSTENTION_MESSAGE = "Bu bilgi tabanında bunu bulamadım."
 
+# How much chunk text to keep in trace/source previews (chars).
+_TRACE_SNIPPET = 240
+
 
 def answer_question(
-    question: str, top_k: int = 5, retrieval_mode: str = "dense"
+    question: str, top_k: int = 5, retrieval_mode: str = "dense", debug: bool = False
 ) -> dict[str, Any]:
     """Retrieve, then either abstain (low score) or generate a grounded answer.
 
@@ -48,31 +52,65 @@ def answer_question(
     scale. So hybrid changes the *ranking* handed to `generate()`, while the
     abstain/answer decision still rests on the dense top-1 similarity (one extra
     cheap dense probe locally).
+
+    With `debug=True` the response carries a `trace` walking the pipeline step by
+    step (embed -> search -> abstention -> generation) for the "Prompt akışı"
+    tab. It does not change the answer path, only observes it.
     """
     client = get_client()
     [query_vector] = embed([question])
 
+    trace: dict[str, Any] = {}
+    if debug:
+        trace["embedding"] = {
+            "model": EMBEDDING_MODEL,
+            "dim": len(query_vector),
+            "preview": [round(v, 4) for v in query_vector[:8]],
+        }
+
     if retrieval_mode == "hybrid":
+        query_sparse = encode_query(question)
         hits = search(
             client,
             query_vector,
-            query_sparse=encode_query(question),
+            query_sparse=query_sparse,
             retrieval_mode="hybrid",
             top_k=top_k,
         )
         gate = search(client, query_vector, retrieval_mode="dense", top_k=1)
         top_score = gate[0].score if gate else None
+        if debug:
+            trace["sparse"] = {"term_count": len(query_sparse.indices)}
     else:
         hits = search(client, query_vector, retrieval_mode="dense", top_k=top_k)
         top_score = hits[0].score if hits else None
 
-    if not hits or top_score is None or top_score < ABSTENTION_THRESHOLD:
-        return {
+    if debug:
+        trace["retrieval"] = {
+            "mode": retrieval_mode,
+            "hits": [_trace_hit(rank, h) for rank, h in enumerate(hits, 1)],
+        }
+
+    abstained = not hits or top_score is None or top_score < ABSTENTION_THRESHOLD
+    if debug:
+        trace["abstention"] = {
+            "threshold": ABSTENTION_THRESHOLD,
+            "top_score": top_score,
+            "decision": "abstain" if abstained else "answer",
+        }
+
+    if abstained:
+        if debug:
+            trace["generation"] = {"skipped": True}
+        result: dict[str, Any] = {
             "answer": ABSTENTION_MESSAGE,
             "abstained": True,
             "sources": [],
             "top_score": top_score,
         }
+        if debug:
+            result["trace"] = trace
+        return result
 
     answer = generate(question, hits)
     sources = [
@@ -87,9 +125,33 @@ def answer_question(
         }
         for h in hits
     ]
-    return {
+    if debug:
+        trace["generation"] = {
+            "skipped": False,
+            "model": GENERATION_MODEL,
+            "context": _format_context(hits),
+            "answer": answer,
+        }
+    result = {
         "answer": answer,
         "abstained": False,
         "sources": sources,
         "top_score": top_score,
+    }
+    if debug:
+        result["trace"] = trace
+    return result
+
+
+def _trace_hit(rank: int, h: SearchHit) -> dict[str, Any]:
+    """A compact, JSON-friendly view of one hit for the trace."""
+    text = h.text or ""
+    return {
+        "rank": rank,
+        "score": h.score,
+        "chunk_id": h.chunk_id,
+        "source_doc": h.source_doc,
+        "section": h.payload.get("section"),
+        "modality": h.payload.get("modality"),
+        "text": text[:_TRACE_SNIPPET] + ("…" if len(text) > _TRACE_SNIPPET else ""),
     }
