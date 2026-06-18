@@ -1,6 +1,6 @@
 # Brings the whole system up with a single `docker compose up`.
-# Step 2 ships only the vector store; the backend/frontend services land in
-# later steps (stubbed below so the topology is visible).
+# Ships the vector store (Step 2) and the RAG API (Step 3a); the frontend
+# service lands in a later step.
 services:
   qdrant:
     image: qdrant/qdrant:latest
@@ -17,16 +17,23 @@ services:
       timeout: 5s
       retries: 5
 
-  # TODO: backend service (Step 4 — RAG API). Will connect to Qdrant via the
-  # service name, i.e. QDRANT_URL=http://qdrant:6333.
-  #
-  # backend:
-  #   build: ./backend
-  #   environment:
-  #     QDRANT_URL: http://qdrant:6333
-  #   depends_on:
-  #     qdrant:
-  #       condition: service_healthy
+  # RAG API (Step 3a). POST /query -> grounded answer (or abstention) + sources.
+  backend:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    container_name: aura_backend
+    ports:
+      - "4242:4242"   # http://localhost:4242  (POST /query, GET /health, /docs)
+    env_file:
+      - .env          # OPENAI_API_KEY, GENERATION_MODEL, ABSTENTION_THRESHOLD, ...
+    environment:
+      # Override the .env value: inside the network Qdrant is reached by service
+      # name, not localhost. `environment` takes precedence over `env_file`.
+      QDRANT_URL: http://qdrant:6333
+    depends_on:
+      qdrant:
+        condition: service_healthy
 
 volumes:
   qdrant_storage:

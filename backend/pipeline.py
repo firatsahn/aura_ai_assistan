@@ -1,0 +1,70 @@
+"""RAG orchestration: question -> embed -> search -> abstain or generate.
+
+The single answer path, kept out of the HTTP layer so it can be exercised
+directly (and later by the eval harness) without standing up a server. It wires
+together the three existing pieces — `embed()` (embedding), `search()`
+(vectorstore), `generate()` (generation) — and adds the one piece Step 3a owns:
+abstention.
+
+Abstention is a single retrieval-score rule, not a second LLM call. If the best
+hit's similarity is below `ABSTENTION_THRESHOLD`, the corpus has nothing
+relevant, so we never call the model and answer with a fixed "couldn't find it"
+message. This is what stops the system from hallucinating on out-of-corpus
+questions, and saves a model call. The grounded prompt in `generate()` is a
+second, independent safety net (it abstains too when context is insufficient).
+
+The default 0.38 was calibrated on this corpus: relevant queries scored 0.40–0.64
+while out-of-corpus queries scored 0.29–0.34, leaving a clean gap. It stays
+env-tunable (`ABSTENTION_THRESHOLD`).
+"""
+
+from __future__ import annotations
+
+import os
+from typing import Any
+
+from dotenv import load_dotenv
+
+from backend.embedding import embed
+from backend.generation import generate
+from backend.vectorstore import get_client, search
+
+load_dotenv()
+
+ABSTENTION_THRESHOLD = float(os.environ.get("ABSTENTION_THRESHOLD", "0.38"))
+
+# Fixed message so abstention is recognizable to callers (frontend / eval).
+ABSTENTION_MESSAGE = "Bu bilgi tabanında bunu bulamadım."
+
+
+def answer_question(question: str, top_k: int = 5) -> dict[str, Any]:
+    """Retrieve, then either abstain (low score) or generate a grounded answer."""
+    client = get_client()
+    [query_vector] = embed([question])
+    hits = search(client, query_vector, top_k=top_k)
+
+    top_score = hits[0].score if hits else None
+    if not hits or hits[0].score < ABSTENTION_THRESHOLD:
+        return {
+            "answer": ABSTENTION_MESSAGE,
+            "abstained": True,
+            "sources": [],
+            "top_score": top_score,
+        }
+
+    answer = generate(question, hits)
+    sources = [
+        {
+            "source_doc": h.source_doc,
+            "section": h.payload.get("section"),
+            "modality": h.payload.get("modality"),
+            "score": h.score,
+        }
+        for h in hits
+    ]
+    return {
+        "answer": answer,
+        "abstained": False,
+        "sources": sources,
+        "top_score": top_score,
+    }

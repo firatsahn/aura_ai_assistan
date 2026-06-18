@@ -1,0 +1,24 @@
+# Keep the build context small and the image clean.
+.venv/
+venv/
+env/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+.git/
+.env
+.env.*
+!.env.example
+
+data/
+doc/
+brief.pdf
+*.log
+tests/
+backend/ingestion/.cache/
+
+# Scratch test page (host-only)
+scratch-ui.html
