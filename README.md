@@ -78,11 +78,14 @@ Copy `.env.example` to `.env` and fill it in:
 cp .env.example .env
 ```
 
-| Variable            | Description                              | Required |
-|---------------------|------------------------------------------|----------|
-| `LLM_API_KEY`       | API key for the generation model         | Yes      |
-| `EMBEDDING_API_KEY` | API key for the embedding model (if any) | No       |
-| `VECTOR_DB_URL`     | Vector store connection (if external)    | No       |
+| Variable            | Description                                                  | Required |
+|---------------------|--------------------------------------------------------------|----------|
+| `ANTHROPIC_API_KEY` | Claude key — generation (`claude-opus-4-8`) and Claude vision | Yes      |
+| `OPENAI_API_KEY`    | OpenAI key — embeddings (`text-embedding-3-small`)            | Yes      |
+| `EMBEDDING_MODEL`   | Embedding model override (default `text-embedding-3-small`)   | No       |
+| `QDRANT_URL`        | Vector store URL (`http://localhost:6333`, or `http://qdrant:6333` in Compose) | No |
+| `QDRANT_COLLECTION` | Qdrant collection name (default `aura_corpus`)               | No       |
+| `GEMINI_API_KEY`    | Gemini key — alternative vision provider (`VISION_PROVIDER=gemini`) | No  |
 
 > _Full list will be finalized as the implementation progresses._
 
@@ -100,10 +103,20 @@ docker compose up --build
 ## Ingestion (Indexing the Corpus)
 
 Processes the corpus (PDF, images, Excel/CSV, markdown) and loads it into the vector
-store, preserving the structure and context of visual and tabular content:
+store, preserving the structure and context of visual and tabular content.
 
 ```bash
-# TODO: ingestion command
+# 1. Start the vector store (Qdrant). Web UI: http://localhost:6333/dashboard
+docker compose up -d qdrant
+
+# 2. Step 1 — read the corpus into a tagged chunk list
+python -m backend.ingestion.run --doc-dir doc --out data/chunks.jsonl
+
+# 3. Step 2 — embed every chunk and load it into Qdrant
+python -m backend.index
+
+# Verify: a query whose answer lives only in an image (the LED card, doc 03)
+python -m backend.index --query "internet bağlantısı yok"
 ```
 
 ## Evaluation
