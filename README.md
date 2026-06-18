@@ -121,13 +121,20 @@ python -m backend.index --query "internet bağlantısı yok"
 
 ## Evaluation
 
-A golden set of ~30–50 question/answer pairs measures retrieval quality (recall@k, MRR)
-and generation quality (faithfulness/groundedness, answer relevance), runnable with a
-single command:
+A golden set of 45 question/answer pairs (`eval/golden_set.jsonl`) measures retrieval
+quality (recall@k, MRR), generation quality (faithfulness/groundedness, answer
+relevance) and abstention accuracy — **dense vs hybrid side by side** — with a single
+command and no external eval framework:
 
 ```bash
-# TODO: evaluation command
+python -m eval.run                 # full: retrieval + generation (LLM judge) + abstention
+python -m eval.run --retrieval-only  # free, deterministic retrieval metrics only (no LLM)
+python -m eval.run --no-judge        # answers + abstention, skip the LLM judge
 ```
+
+Results, run config and per-question detail are written to `eval/results.json`. The
+LLM judge runs on `gpt-4o` (stronger than the `gpt-4o-mini` generator, to limit
+self-bias). See **[`DECISIONS.md`](DECISIONS.md#evaluation-step-4)** for methodology.
 
 ## Project Structure
 
@@ -153,11 +160,17 @@ handling, and the production migration plan is documented in
 
 ## Evaluation Results
 
-| Metric            | Value |
-|-------------------|-------|
-| Recall@k          | _TBD_ |
-| MRR               | _TBD_ |
-| Faithfulness      | _TBD_ |
-| Answer Relevance  | _TBD_ |
+Measured on the 45-question golden set. Hybrid retrieval wins on every retrieval
+metric and on generation quality — the measured justification for the Step 3b decision.
 
-> _Results will be filled in once the evaluation harness is complete._
+| Metric             | Dense (baseline) | Hybrid   |
+|--------------------|------------------|----------|
+| Recall@3           | 0.93             | **0.97** |
+| Recall@5           | 0.95             | **0.97** |
+| MRR                | 0.81             | **0.90** |
+| Faithfulness       | 0.96             | **0.99** |
+| Answer Relevance   | 0.91             | **0.92** |
+| Abstention recall  | 5/5              | 5/5      |
+| False abstentions  | 3/40             | 3/40     |
+
+> Reproduce with `python -m eval.run`. Judge model: `gpt-4o`; generation: `gpt-4o-mini`.

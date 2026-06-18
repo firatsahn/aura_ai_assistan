@@ -1,0 +1,2228 @@
+{
+  "config": {
+    "timestamp": "2026-06-18T15:30:11.231970+00:00",
+    "embedding_model": "text-embedding-3-small",
+    "generation_model": "gpt-4o-mini",
+    "judge_model": "gpt-4o",
+    "abstention_threshold": 0.38,
+    "top_k": 5,
+    "n_total": 45,
+    "n_answerable": 40,
+    "n_abstention": 5,
+    "retrieval_only": false,
+    "judge_enabled": true,
+    "elapsed_seconds": 402.2
+  },
+  "modes": {
+    "dense": {
+      "retrieval": {
+        "mode": "dense",
+        "n": 40,
+        "recall_at_k": {
+          "3": 0.925,
+          "5": 0.95
+        },
+        "mrr": 0.80625,
+        "per_question": [
+          {
+            "id": "q01",
+            "expected_sources": [
+              "01_aura_kurulum_kilavuzu.md"
+            ],
+            "retrieved": [
+              "01_aura_kurulum_kilavuzu.md",
+              "06_detayli_kullanici_kilavuzu.pdf",
+              "06_detayli_kullanici_kilavuzu.pdf",
+              "01_aura_kurulum_kilavuzu.md",
+              "02_abonelik_ve_iade_politikasi.pdf"
+            ],
+            "recall": {
+              "3": 1.0,
+              "5": 1.0
+            },
+            "reciprocal_rank": 1.0
+          },
+          {
+            "id": "q02",
+            "expected_sources": [
+              "01_aura_kurulum_kilavuzu.md"
+            ],
+            "retrieved": [
+              "01_aura_kurulum_kilavuzu.md",
+              "06_detayli_kullanici_kilavuzu.pdf",
+              "07_sorun_giderme_sss.pdf",
+              "07_sorun_giderme_sss.pdf",
+              "02_abonelik_ve_iade_politikasi.pdf"
+            ],
+            "recall": {
+              "3": 1.0,
+              "5": 1.0
+            },
+            "reciprocal_rank": 1.0
+          },
+          {
+            "id": "q03",
+            "expected_sources": [
+              "01_aura_kurulum_kilavuzu.md"
+            ],
+            "retrieved": [
+              "01_aura_kurulum_kilavuzu.md",
+              "06_detayli_kullanici_kilavuzu.pdf",
+              "07_sorun_giderme_sss.pdf",
+              "07_sorun_giderme_sss.pdf",
+              "01_aura_kurulum_kilavuzu.md"
+            ],
+            "recall": {
+              "3": 1.0,
+              "5": 1.0
+            },
+            "reciprocal_rank": 1.0
+          },
+          {
+            "id": "q04",
+            "expected_sources": [
+              "01_aura_kurulum_kilavuzu.md",
+              "05_teknik_ozellikler_scan.pdf"
+            ],
+            "retrieved": [
+              "06_detayli_kullanici_kilavuzu.pdf",
+              "07_sorun_giderme_sss.pdf",
+              "03_led_durum_gostergeleri.png",
+              "01_aura_kurulum_kilavuzu.md",
+              "01_aura_kurulum_kilavuzu.md"
+            ],
+            "recall": {
+              "3": 0.0,
+              "5": 1.0
+            },
+            "reciprocal_rank": 0.25
+          },
+          {
+            "id": "q05",
+            "expected_sources": [
+              "02_abonelik_ve_iade_politikasi.pdf"
+            ],
+            "retrieved": [
+              "02_abonelik_ve_iade_politikasi.pdf",
+              "07_sorun_giderme_sss.pdf",
+              "06_detayli_kullanici_kilavuzu.pdf",
+              "02_abonelik_ve_iade_politikasi.pdf",
+              "07_sorun_giderme_sss.pdf"
+            ],
+            "recall": {
+              "3": 1.0,
+              "5": 1.0
+            },
+            "reciprocal_rank": 1.0
+          },
+          {
+            "id": "q06",
+            "expected_sources": [
+              "02_abonelik_ve_iade_politikasi.pdf"
+            ],
+            "retrieved": [
+              "07_sorun_giderme_sss.pdf",
+              "02_abonelik_ve_iade_politikasi.pdf",
+              "07_sorun_giderme_sss.pdf",
+              "06_detayli_kullanici_kilavuzu.pdf",
+              "07_sorun_giderme_sss.pdf"
+            ],
+            "recall": {
+              "3": 1.0,
+              "5": 1.0
+            },
+            "reciprocal_rank": 0.5
+          },
+          {
+            "id": "q07",
+            "expected_sources": [
+              "02_abonelik_ve_iade_politikasi.pdf"
+            ],
+            "retrieved": [
+              "02_abonelik_ve_iade_politikasi.pdf",
+              "07_sorun_giderme_sss.pdf",
+              "07_sorun_giderme_sss.pdf",
+              "02_abonelik_ve_iade_politikasi.pdf",
+              "07_sorun_giderme_sss.pdf"
+            ],
+            "recall": {
+              "3": 1.0,
+              "5": 1.0
+            },
+            "reciprocal_rank": 1.0
+          },
+          {
+            "id": "q08",
+            "expected_sources": [
+              "02_abonelik_ve_iade_politikasi.pdf"
+            ],
+            "retrieved": [
+              "07_sorun_giderme_sss.pdf",
+              "02_abonelik_ve_iade_politikasi.pdf",
+              "02_abonelik_ve_iade_politikasi.pdf",
+              "08_gizlilik_ve_veri_politikasi.pdf",
+              "04_hata_kodlari.xlsx"
+            ],
+            "recall": {
+              "3": 1.0,
+              "5": 1.0
+            },
+            "reciprocal_rank": 0.5
+          },
+          {
+            "id": "q09",
+            "expected_sources": [
+              "02_abonelik_ve_iade_politikasi.pdf"
+            ],
+            "retrieved": [
+              "02_abonelik_ve_iade_politikasi.pdf",
+              "03_led_durum_gostergeleri.png",
+              "03_led_durum_gostergeleri.png",
+              "03_led_durum_gostergeleri.png",
+              "03_led_durum_gostergeleri.png"
+            ],
+            "recall": {
+              "3": 1.0,
+              "5": 1.0
+            },
+            "reciprocal_rank": 1.0
+          },
+          {
+            "id": "q10",
+            "expected_sources": [
+              "03_led_durum_gostergeleri.png"
+            ],
+            "retrieved": [
+              "03_led_durum_gostergeleri.png",
+              "03_led_durum_gostergeleri.png",
+              "03_led_durum_gostergeleri.png",
+              "03_led_durum_gostergeleri.png",
+              "03_led_durum_gostergeleri.png"
+            ],
+            "recall": {
+              "3": 1.0,
+              "5": 1.0
+            },
+            "reciprocal_rank": 1.0
+          },
+          {
+            "id": "q11",
+            "expected_sources": [
+              "03_led_durum_gostergeleri.png"
+            ],
+            "retrieved": [
+              "03_led_durum_gostergeleri.png",
+              "03_led_durum_gostergeleri.png",
+              "03_led_durum_gostergeleri.png",
+              "01_aura_kurulum_kilavuzu.md",
+              "03_led_durum_gostergeleri.png"
+            ],
+            "recall": {
+              "3": 1.0,
+              "5": 1.0
+            },
+            "reciprocal_rank": 1.0
+          },
+          {
+            "id": "q12",
+            "expected_sources": [
+              "03_led_durum_gostergeleri.png"
+            ],
+            "retrieved": [
+              "03_led_durum_gostergeleri.png",
+              "03_led_durum_gostergeleri.png",
+              "03_led_durum_gostergeleri.png",
+              "03_led_durum_gostergeleri.png",
+              "03_led_durum_gostergeleri.png"
+            ],
+            "recall": {
+              "3": 1.0,
+              "5": 1.0
+            },
+            "reciprocal_rank": 1.0
+          },
+          {
+            "id": "q13",
+            "expected_sources": [
+              "03_led_durum_gostergeleri.png"
+            ],
+            "retrieved": [
+              "03_led_durum_gostergeleri.png",
+              "03_led_durum_gostergeleri.png",
+              "03_led_durum_gostergeleri.png",
+              "03_led_durum_gostergeleri.png",
+              "03_led_durum_gostergeleri.png"
+            ],
+            "recall": {
+              "3": 1.0,
+              "5": 1.0
+            },
+            "reciprocal_rank": 1.0
+          },
+          {
+            "id": "q14",
+            "expected_sources": [
+              "03_led_durum_gostergeleri.png"
+            ],
+            "retrieved": [
+              "03_led_durum_gostergeleri.png",
+              "03_led_durum_gostergeleri.png",
+              "03_led_durum_gostergeleri.png",
+              "01_aura_kurulum_kilavuzu.md",
+              "03_led_durum_gostergeleri.png"
+            ],
+            "recall": {
+              "3": 1.0,
+              "5": 1.0
+            },
+            "reciprocal_rank": 1.0
+          },
+          {
+            "id": "q15",
+            "expected_sources": [
+              "03_led_durum_gostergeleri.png"
+            ],
+            "retrieved": [
+              "03_led_durum_gostergeleri.png",
+              "03_led_durum_gostergeleri.png",
+              "03_led_durum_gostergeleri.png",
+              "03_led_durum_gostergeleri.png",
+              "06_detayli_kullanici_kilavuzu.pdf"
+            ],
+            "recall": {
+              "3": 1.0,
+              "5": 1.0
+            },
+            "reciprocal_rank": 1.0
+          },
+          {
+            "id": "q16",
+            "expected_sources": [
+              "04_hata_kodlari.xlsx"
+            ],
+            "retrieved": [
+              "04_hata_kodlari.xlsx",
+              "04_hata_kodlari.xlsx",
+              "04_hata_kodlari.xlsx",
+              "04_hata_kodlari.xlsx",
+              "04_hata_kodlari.xlsx"
+            ],
+            "recall": {
+              "3": 1.0,
+              "5": 1.0
+            },
+            "reciprocal_rank": 1.0
+          },
+          {
+            "id": "q17",
+            "expected_sources": [
+              "04_hata_kodlari.xlsx"
+            ],
+            "retrieved": [
+              "04_hata_kodlari.xlsx",
+              "04_hata_kodlari.xlsx",
+              "04_hata_kodlari.xlsx",
+              "04_hata_kodlari.xlsx",
+              "04_hata_kodlari.xlsx"
+            ],
+            "recall": {
+              "3": 1.0,
+              "5": 1.0
+            },
+            "reciprocal_rank": 1.0
+          },
+          {
+            "id": "q18",
+            "expected_sources": [
+              "04_hata_kodlari.xlsx"
+            ],
+            "retrieved": [
+              "04_hata_kodlari.xlsx",
+              "06_detayli_kullanici_kilavuzu.pdf",
+              "04_hata_kodlari.xlsx",
+              "04_hata_kodlari.xlsx",
+              "04_hata_kodlari.xlsx"
+            ],
+            "recall": {
+              "3": 1.0,
+              "5": 1.0
+            },
+            "reciprocal_rank": 1.0
+          },
+          {
+            "id": "q19",
+            "expected_sources": [
+              "04_hata_kodlari.xlsx"
+            ],
+            "retrieved": [
+              "04_hata_kodlari.xlsx",
+              "04_hata_kodlari.xlsx",
+              "04_hata_kodlari.xlsx",
+              "04_hata_kodlari.xlsx",
+              "04_hata_kodlari.xlsx"
+            ],
+            "recall": {
+              "3": 1.0,
+              "5": 1.0
+            },
+            "reciprocal_rank": 1.0
+          },
+          {
+            "id": "q20",
+            "expected_sources": [
+              "04_hata_kodlari.xlsx"
+            ],
+            "retrieved": [
+              "04_hata_kodlari.xlsx",
+              "04_hata_kodlari.xlsx",
+              "04_hata_kodlari.xlsx",
+              "04_hata_kodlari.xlsx",
+              "04_hata_kodlari.xlsx"
+            ],
+            "recall": {
+              "3": 1.0,
+              "5": 1.0
+            },
+            "reciprocal_rank": 1.0
+          },
+          {
+            "id": "q21",
+            "expected_sources": [
+              "04_hata_kodlari.xlsx"
+            ],
+            "retrieved": [
+              "07_sorun_giderme_sss.pdf",
+              "04_hata_kodlari.xlsx",
+              "07_sorun_giderme_sss.pdf",
+              "04_hata_kodlari.xlsx",
+              "07_sorun_giderme_sss.pdf"
+            ],
+            "recall": {
+              "3": 1.0,
+              "5": 1.0
+            },
+            "reciprocal_rank": 0.5
+          },
+          {
+            "id": "q22",
+            "expected_sources": [
+              "05_teknik_ozellikler_scan.pdf"
+            ],
+            "retrieved": [
+              "03_led_durum_gostergeleri.png",
+              "02_abonelik_ve_iade_politikasi.pdf",
+              "05_teknik_ozellikler_scan.pdf",
+              "03_led_durum_gostergeleri.png",
+              "03_led_durum_gostergeleri.png"
+            ],
+            "recall": {
+              "3": 1.0,
+              "5": 1.0
+            },
+            "reciprocal_rank": 0.3333333333333333
+          },
+          {
+            "id": "q23",
+            "expected_sources": [
+              "05_teknik_ozellikler_scan.pdf"
+            ],
+            "retrieved": [
+              "06_detayli_kullanici_kilavuzu.pdf",
+              "06_detayli_kullanici_kilavuzu.pdf",
+              "07_sorun_giderme_sss.pdf",
+              "07_sorun_giderme_sss.pdf",
+              "06_detayli_kullanici_kilavuzu.pdf"
+            ],
+            "recall": {
+              "3": 0.0,
+              "5": 0.0
+            },
+            "reciprocal_rank": 0.0
+          },
+          {
+            "id": "q24",
+            "expected_sources": [
+              "05_teknik_ozellikler_scan.pdf"
+            ],
+            "retrieved": [
+              "02_abonelik_ve_iade_politikasi.pdf",
+              "05_teknik_ozellikler_scan.pdf",
+              "05_teknik_ozellikler_scan.pdf",
+              "03_led_durum_gostergeleri.png",
+              "06_detayli_kullanici_kilavuzu.pdf"
+            ],
+            "recall": {
+              "3": 1.0,
+              "5": 1.0
+            },
+            "reciprocal_rank": 0.5
+          },
+          {
+            "id": "q25",
+            "expected_sources": [
+              "05_teknik_ozellikler_scan.pdf"
+            ],
+            "retrieved": [
+              "03_led_durum_gostergeleri.png",
+              "03_led_durum_gostergeleri.png",
+              "03_led_durum_gostergeleri.png",
+              "03_led_durum_gostergeleri.png",
+              "06_detayli_kullanici_kilavuzu.pdf"
+            ],
+            "recall": {
+              "3": 0.0,
+              "5": 0.0
+            },
+            "reciprocal_rank": 0.0
+          },
+          {
+            "id": "q26",
+            "expected_sources": [
+              "05_teknik_ozellikler_scan.pdf"
+            ],
+            "retrieved": [
+              "03_led_durum_gostergeleri.png",
+              "05_teknik_ozellikler_scan.pdf",
+              "07_sorun_giderme_sss.pdf",
+              "06_detayli_kullanici_kilavuzu.pdf",
+              "03_led_durum_gostergeleri.png"
+            ],
+            "recall": {
+              "3": 1.0,
+              "5": 1.0
+            },
+            "reciprocal_rank": 0.5
+          },
+          {
+            "id": "q27",
+            "expected_sources": [
+              "06_detayli_kullanici_kilavuzu.pdf"
+            ],
+            "retrieved": [
+              "06_detayli_kullanici_kilavuzu.pdf",
+              "02_abonelik_ve_iade_politikasi.pdf",
+              "06_detayli_kullanici_kilavuzu.pdf",
+              "06_detayli_kullanici_kilavuzu.pdf",
+              "06_detayli_kullanici_kilavuzu.pdf"
+            ],
+            "recall": {
+              "3": 1.0,
+              "5": 1.0
+            },
+            "reciprocal_rank": 1.0
+          },
+          {
+            "id": "q28",
+            "expected_sources": [
+              "06_detayli_kullanici_kilavuzu.pdf"
+            ],
+            "retrieved": [
+              "06_detayli_kullanici_kilavuzu.pdf",
+              "06_detayli_kullanici_kilavuzu.pdf",
+              "06_detayli_kullanici_kilavuzu.pdf",
+              "06_detayli_kullanici_kilavuzu.pdf",
+              "06_detayli_kullanici_kilavuzu.pdf"
+            ],
+            "recall": {
+              "3": 1.0,
+              "5": 1.0
+            },
+            "reciprocal_rank": 1.0
+          },
+          {
+            "id": "q29",
+            "expected_sources": [
+              "06_detayli_kullanici_kilavuzu.pdf"
+            ],
+            "retrieved": [
+              "06_detayli_kullanici_kilavuzu.pdf",
+              "06_detayli_kullanici_kilavuzu.pdf",
+              "06_detayli_kullanici_kilavuzu.pdf",
+              "06_detayli_kullanici_kilavuzu.pdf",
+              "07_sorun_giderme_sss.pdf"
+            ],
+            "recall": {
+              "3": 1.0,
+              "5": 1.0
+            },
+            "reciprocal_rank": 1.0
+          },
+          {
+            "id": "q30",
+            "expected_sources": [
+              "06_detayli_kullanici_kilavuzu.pdf"
+            ],
+            "retrieved": [
+              "06_detayli_kullanici_kilavuzu.pdf",
+              "06_detayli_kullanici_kilavuzu.pdf",
+              "07_sorun_giderme_sss.pdf",
+              "06_detayli_kullanici_kilavuzu.pdf",
+              "01_aura_kurulum_kilavuzu.md"
+            ],
+            "recall": {
+              "3": 1.0,
+              "5": 1.0
+            },
+            "reciprocal_rank": 1.0
+          },
+          {
+            "id": "q31",
+            "expected_sources": [
+              "06_detayli_kullanici_kilavuzu.pdf"
+            ],
+            "retrieved": [
+              "06_detayli_kullanici_kilavuzu.pdf",
+              "06_detayli_kullanici_kilavuzu.pdf",
+              "06_detayli_kullanici_kilavuzu.pdf",
+              "06_detayli_kullanici_kilavuzu.pdf",
+              "06_detayli_kullanici_kilavuzu.pdf"
+            ],
+            "recall": {
+              "3": 1.0,
+              "5": 1.0
+            },
+            "reciprocal_rank": 1.0
+          },
+          {
+            "id": "q32",
+            "expected_sources": [
+              "07_sorun_giderme_sss.pdf"
+            ],
+            "retrieved": [
+              "07_sorun_giderme_sss.pdf",
+              "06_detayli_kullanici_kilavuzu.pdf",
+              "07_sorun_giderme_sss.pdf",
+              "07_sorun_giderme_sss.pdf",
+              "06_detayli_kullanici_kilavuzu.pdf"
+            ],
+            "recall": {
+              "3": 1.0,
+              "5": 1.0
+            },
+            "reciprocal_rank": 1.0
+          },
+          {
+            "id": "q33",
+            "expected_sources": [
+              "07_sorun_giderme_sss.pdf"
+            ],
+            "retrieved": [
+              "07_sorun_giderme_sss.pdf",
+              "01_aura_kurulum_kilavuzu.md",
+              "08_gizlilik_ve_veri_politikasi.pdf",
+              "06_detayli_kullanici_kilavuzu.pdf",
+              "08_gizlilik_ve_veri_politikasi.pdf"
+            ],
+            "recall": {
+              "3": 1.0,
+              "5": 1.0
+            },
+            "reciprocal_rank": 1.0
+          },
+          {
+            "id": "q34",
+            "expected_sources": [
+              "07_sorun_giderme_sss.pdf"
+            ],
+            "retrieved": [
+              "06_detayli_kullanici_kilavuzu.pdf",
+              "06_detayli_kullanici_kilavuzu.pdf",
+              "07_sorun_giderme_sss.pdf",
+              "07_sorun_giderme_sss.pdf",
+              "06_detayli_kullanici_kilavuzu.pdf"
+            ],
+            "recall": {
+              "3": 1.0,
+              "5": 1.0
+            },
+            "reciprocal_rank": 0.3333333333333333
+          },
+          {
+            "id": "q35",
+            "expected_sources": [
+              "08_gizlilik_ve_veri_politikasi.pdf"
+            ],
+            "retrieved": [
+              "08_gizlilik_ve_veri_politikasi.pdf",
+              "08_gizlilik_ve_veri_politikasi.pdf",
+              "08_gizlilik_ve_veri_politikasi.pdf",
+              "08_gizlilik_ve_veri_politikasi.pdf",
+              "08_gizlilik_ve_veri_politikasi.pdf"
+            ],
+            "recall": {
+              "3": 1.0,
+              "5": 1.0
+            },
+            "reciprocal_rank": 1.0
+          },
+          {
+            "id": "q36",
+            "expected_sources": [
+              "08_gizlilik_ve_veri_politikasi.pdf"
+            ],
+            "retrieved": [
+              "08_gizlilik_ve_veri_politikasi.pdf",
+              "07_sorun_giderme_sss.pdf",
+              "08_gizlilik_ve_veri_politikasi.pdf",
+              "08_gizlilik_ve_veri_politikasi.pdf",
+              "08_gizlilik_ve_veri_politikasi.pdf"
+            ],
+            "recall": {
+              "3": 1.0,
+              "5": 1.0
+            },
+            "reciprocal_rank": 1.0
+          },
+          {
+            "id": "q37",
+            "expected_sources": [
+              "04_hata_kodlari.xlsx"
+            ],
+            "retrieved": [
+              "07_sorun_giderme_sss.pdf",
+              "04_hata_kodlari.xlsx",
+              "06_detayli_kullanici_kilavuzu.pdf",
+              "06_detayli_kullanici_kilavuzu.pdf",
+              "04_hata_kodlari.xlsx"
+            ],
+            "recall": {
+              "3": 1.0,
+              "5": 1.0
+            },
+            "reciprocal_rank": 0.5
+          },
+          {
+            "id": "q38",
+            "expected_sources": [
+              "01_aura_kurulum_kilavuzu.md",
+              "04_hata_kodlari.xlsx"
+            ],
+            "retrieved": [
+              "04_hata_kodlari.xlsx",
+              "07_sorun_giderme_sss.pdf",
+              "01_aura_kurulum_kilavuzu.md",
+              "04_hata_kodlari.xlsx",
+              "01_aura_kurulum_kilavuzu.md"
+            ],
+            "recall": {
+              "3": 1.0,
+              "5": 1.0
+            },
+            "reciprocal_rank": 1.0
+          },
+          {
+            "id": "q39",
+            "expected_sources": [
+              "02_abonelik_ve_iade_politikasi.pdf",
+              "06_detayli_kullanici_kilavuzu.pdf"
+            ],
+            "retrieved": [
+              "08_gizlilik_ve_veri_politikasi.pdf",
+              "01_aura_kurulum_kilavuzu.md",
+              "06_detayli_kullanici_kilavuzu.pdf",
+              "06_detayli_kullanici_kilavuzu.pdf",
+              "06_detayli_kullanici_kilavuzu.pdf"
+            ],
+            "recall": {
+              "3": 1.0,
+              "5": 1.0
+            },
+            "reciprocal_rank": 0.3333333333333333
+          },
+          {
+            "id": "q40",
+            "expected_sources": [
+              "05_teknik_ozellikler_scan.pdf",
+              "07_sorun_giderme_sss.pdf"
+            ],
+            "retrieved": [
+              "05_teknik_ozellikler_scan.pdf",
+              "07_sorun_giderme_sss.pdf",
+              "06_detayli_kullanici_kilavuzu.pdf",
+              "06_detayli_kullanici_kilavuzu.pdf",
+              "06_detayli_kullanici_kilavuzu.pdf"
+            ],
+            "recall": {
+              "3": 1.0,
+              "5": 1.0
+            },
+            "reciprocal_rank": 1.0
+          }
+        ]
+      },
+      "abstention": {
+        "correct_abstentions": 5,
+        "n_abstention": 5,
+        "abstention_recall": 1.0,
+        "false_abstentions": 3,
+        "n_answerable": 40,
+        "answer_precision": 1.0,
+        "false_abstained_ids": [
+          "q22",
+          "q23",
+          "q25"
+        ],
+        "wrongly_answered_ids": []
+      },
+      "generation": {
+        "judge_model": "gpt-4o",
+        "judged": 37,
+        "skipped_abstained": 3,
+        "faithfulness": 0.9594594594594594,
+        "answer_relevance": 0.9054054054054054,
+        "per_question": [
+          {
+            "id": "q01",
+            "faithfulness": 1.0,
+            "faithfulness_raw": 5.0,
+            "faithfulness_reason": "Cevap, kaynaklarda belirtilen bilgilere dayanıyor. Aura Hub G2'nin kurulumu için Aura Home mobil uygulamasının indirilmesi gerektiği bilgisi, kaynak 1'de belirtilmiştir.",
+            "relevance": 1.0,
+            "relevance_raw": 5.0,
+            "relevance_reason": "Cevap, Aura Hub G2'yi kurmak için gerekli olan mobil uygulamayı doğrudan belirtmiş."
+          },
+          {
+            "id": "q02",
+            "faithfulness": 1.0,
+            "faithfulness_raw": 5.0,
+            "faithfulness_reason": "Cevap, Kaynak 1'de belirtilen bilgiyle tamamen uyumlu ve başka bir iddia içermiyor.",
+            "relevance": 1.0,
+            "relevance_raw": 5.0,
+            "relevance_reason": "Cevap, Hub'ın tamamen başlamasının ne kadar sürdüğünü doğrudan ve net bir şekilde yanıtlıyor."
+          },
+          {
+            "id": "q03",
+            "faithfulness": 1.0,
+            "faithfulness_raw": 5.0,
+            "faithfulness_reason": "Cevap, Kaynak 1'deki bilgilerle tamamen uyumlu ve destekleniyor.",
+            "relevance": 1.0,
+            "relevance_raw": 5.0,
+            "relevance_reason": "Cevap, telefonun hub'ı algılamadığı durumda yapılması gereken adımı açıkça belirtiyor ve soruyu doğrudan karşılıyor."
+          },
+          {
+            "id": "q04",
+            "faithfulness": 0.0,
+            "faithfulness_raw": 1.0,
+            "faithfulness_reason": "Cevapta belirtilen kaynak yanlış. 2.4 GHz ve 5 GHz Wi-Fi bantlarının desteklendiği bilgisi Kaynak 2 ve Kaynak 4'te yer alıyor, ancak Kaynak 1'de bu bilgi yok.",
+            "relevance": 1.0,
+            "relevance_raw": 5.0,
+            "relevance_reason": "Cevap, Aura Hub G2'nin desteklediği Wi-Fi bantlarını tam ve doğrudan belirtmektedir."
+          },
+          {
+            "id": "q05",
+            "faithfulness": 1.0,
+            "faithfulness_raw": 5.0,
+            "faithfulness_reason": "Cevap, kaynak 1'de belirtilen Pro abonelik planının özelliklerini doğru bir şekilde aktarmaktadır. Herhangi bir uydurma bilgi yoktur.",
+            "relevance": 1.0,
+            "relevance_raw": 5.0,
+            "relevance_reason": "Cevap, Pro abonelik planının aylık maliyetini ve içeriğini tam ve doğrudan karşılıyor."
+          },
+          {
+            "id": "q06",
+            "faithfulness": 1.0,
+            "faithfulness_raw": 5.0,
+            "faithfulness_reason": "Cevap, Kaynak 2'de belirtilen bilgilerle tamamen uyumlu ve destekleniyor.",
+            "relevance": 1.0,
+            "relevance_raw": 5.0,
+            "relevance_reason": "Cevap, Plus planının kaç hub'a izin verdiğini doğrudan ve tam olarak yanıtlıyor."
+          },
+          {
+            "id": "q07",
+            "faithfulness": 1.0,
+            "faithfulness_raw": 5.0,
+            "faithfulness_reason": "Cevap, Kaynak 1'deki bilgilerle tamamen uyumlu ve destekleniyor.",
+            "relevance": 1.0,
+            "relevance_raw": 5.0,
+            "relevance_reason": "Cevap, aboneliğin iptali durumunda ne olacağına dair detaylı bilgi veriyor ve soruyu tam olarak karşılıyor."
+          },
+          {
+            "id": "q08",
+            "faithfulness": 1.0,
+            "faithfulness_raw": 5.0,
+            "faithfulness_reason": "Cevap, kaynak 2'de belirtilen iade politikasına tamamen uygun ve doğru bir şekilde yansıtılmış.",
+            "relevance": 1.0,
+            "relevance_raw": 5.0,
+            "relevance_reason": "Cevap, donanımın iade süresini net bir şekilde belirtmiş ve soruyu tam olarak yanıtlamıştır."
+          },
+          {
+            "id": "q09",
+            "faithfulness": 1.0,
+            "faithfulness_raw": 5.0,
+            "faithfulness_reason": "Cevap, kaynak 1'de belirtilen garanti süresi bilgisiyle tamamen uyumlu.",
+            "relevance": 1.0,
+            "relevance_raw": 5.0,
+            "relevance_reason": "Cevap, Aura Hub G2'nin garanti süresini doğrudan ve tam olarak yanıtlıyor."
+          },
+          {
+            "id": "q10",
+            "faithfulness": 1.0,
+            "faithfulness_raw": 5.0,
+            "faithfulness_reason": "Cevap, kaynak 1'de belirtilen bilgiyle tamamen uyumlu. Sabit kırmızı LED'in internet bağlantısının olmadığını gösterdiği doğru.",
+            "relevance": 0.5,
+            "relevance_raw": 3.0,
+            "relevance_reason": "Cevap, sabit kırmızı LED'in ne anlama geldiğine dair bir açıklama sunuyor, ancak bu açıklama genelleyici ve her cihaz için geçerli olmayabilir. Cihazın türüne veya bağlama göre farklı anlamlar taşıyabilir."
+          },
+          {
+            "id": "q11",
+            "faithfulness": 1.0,
+            "faithfulness_raw": 5.0,
+            "faithfulness_reason": "Cevap, kaynak 1'deki bilgiyle tamamen uyumlu ve başka bir iddia içermiyor.",
+            "relevance": 1.0,
+            "relevance_raw": 5.0,
+            "relevance_reason": "Cevap, yanıp sönen mor LED'in ne anlama geldiğini ve bu durumda ne yapılması gerektiğini açıkça belirtiyor."
+          },
+          {
+            "id": "q12",
+            "faithfulness": 1.0,
+            "faithfulness_raw": 5.0,
+            "faithfulness_reason": "Cevap, kaynak 2'de belirtilen bilgiyle tamamen uyumlu. Yanıp sönen sarı LED'in bellek düşük olduğunu ve hub'ın yeniden başlatılmasının önerildiğini gösterdiği doğru.",
+            "relevance": 0.5,
+            "relevance_raw": 3.0,
+            "relevance_reason": "Cevap, yanıp sönen sarı LED'in ne anlama geldiğine dair bir açıklama sunuyor, ancak bu açıklama genelleyici olmayabilir ve belirli bir cihaz veya bağlam için geçerli olabilir."
+          },
+          {
+            "id": "q13",
+            "faithfulness": 1.0,
+            "faithfulness_raw": 5.0,
+            "faithfulness_reason": "Cevap, kaynak 1'de belirtilen bilgiyle tamamen uyumlu ve başka bir iddia içermiyor.",
+            "relevance": 1.0,
+            "relevance_raw": 5.0,
+            "relevance_reason": "Cevap, hub normal çalışırken LED'in hangi renkte olduğunu doğrudan ve tam olarak yanıtlıyor."
+          },
+          {
+            "id": "q14",
+            "faithfulness": 1.0,
+            "faithfulness_raw": 5.0,
+            "faithfulness_reason": "Cevap, kaynak 1'de belirtilen bilgiyle tamamen uyumlu. İlk kurulumun başarıyla tamamlandığında LED'in sabit yeşil olduğu belirtilmiş.",
+            "relevance": 1.0,
+            "relevance_raw": 5.0,
+            "relevance_reason": "Cevap, soruyu tam ve doğrudan yanıtlıyor; LED'in rengini belirtiyor."
+          },
+          {
+            "id": "q15",
+            "faithfulness": 1.0,
+            "faithfulness_raw": 5.0,
+            "faithfulness_reason": "Cevap, kaynak 2'de belirtilen bilgiyle tamamen uyumlu. Eşleştirme modundayken LED'in yavaş yanıp sönen mavi renkte yandığı doğru bir şekilde belirtilmiş.",
+            "relevance": 1.0,
+            "relevance_raw": 5.0,
+            "relevance_reason": "Cevap, eşleştirme modundayken LED'in nasıl yandığını tam ve doğrudan açıklıyor."
+          },
+          {
+            "id": "q16",
+            "faithfulness": 1.0,
+            "faithfulness_raw": 5.0,
+            "faithfulness_reason": "Cevap, kaynak 1'de verilen bilgilerle tamamen uyumludur. Hata kodu, anlamı, olası nedeni ve önerilen çözüm doğru bir şekilde aktarılmıştır.",
+            "relevance": 1.0,
+            "relevance_raw": 5.0,
+            "relevance_reason": "Cevap, E-101 hata kodunun ne anlama geldiğini ve nasıl çözüleceğini açıkça açıklıyor."
+          },
+          {
+            "id": "q17",
+            "faithfulness": 1.0,
+            "faithfulness_raw": 5.0,
+            "faithfulness_reason": "Cevap, kaynak 1'de belirtilen E-205 hata kodunun anlamı ve olası nedenleriyle tamamen uyumlu.",
+            "relevance": 1.0,
+            "relevance_raw": 5.0,
+            "relevance_reason": "Cevap, E-205 hatasının neden oluştuğunu doğrudan ve net bir şekilde açıklıyor."
+          },
+          {
+            "id": "q18",
+            "faithfulness": 1.0,
+            "faithfulness_raw": 5.0,
+            "faithfulness_reason": "Cevap, kaynak 1'deki bilgilerle tamamen uyumlu. E-212 hata kodu, firmware güncellemesi başarısız olduğunda ortaya çıkar ve önerilen çözüm, hub'ı yeniden başlatmak ve güncellemeyi tekrar başlatmaktır. Ayrıca, güncelleme sırasında cihazın gücünü kesmemenin önemine de değinilmiştir.",
+            "relevance": 1.0,
+            "relevance_raw": 5.0,
+            "relevance_reason": "Cevap, firmware güncellemesi başarısız olduğunda görünen hata kodunu ve yapılması gereken adımları açıkça belirtmiş."
+          },
+          {
+            "id": "q19",
+            "faithfulness": 1.0,
+            "faithfulness_raw": 5.0,
+            "faithfulness_reason": "Cevap, kaynaklarda belirtilen E-301 hata kodu ve açıklamalarıyla tamamen uyumlu. Herhangi bir uydurma bilgi yok.",
+            "relevance": 1.0,
+            "relevance_raw": 5.0,
+            "relevance_reason": "Cevap, E-301 hatasının ne anlama geldiğini ve olası nedenlerini açıklayarak soruyu tam ve doğrudan karşılıyor."
+          },
+          {
+            "id": "q20",
+            "faithfulness": 1.0,
+            "faithfulness_raw": 5.0,
+            "faithfulness_reason": "Cevap, kaynak 1'de verilen bilgilerle tamamen uyumlu. E-500 hatası, anlamı, olası nedeni ve önerilen çözüm doğru bir şekilde aktarılmış.",
+            "relevance": 0.0,
+            "relevance_raw": 1.0,
+            "relevance_reason": "Cevap, E-500 hatasını donanım arızası olarak tanımlıyor, ancak E-500 genellikle bir sunucu tarafı hata kodu olan HTTP 500 İç Sunucu Hatası ile ilgilidir. Bu nedenle cevap soruyu doğru bir şekilde yanıtlamıyor."
+          },
+          {
+            "id": "q21",
+            "faithfulness": 1.0,
+            "faithfulness_raw": 5.0,
+            "faithfulness_reason": "Cevap, kaynak 2'de belirtilen E-404 hata kodu ve anlamı ile tamamen uyumlu. Başka bir bilgi eklenmemiş.",
+            "relevance": 1.0,
+            "relevance_raw": 5.0,
+            "relevance_reason": "Cevap, bulut senkronizasyonu başarısız olduğunda gösterilen hata kodunu doğrudan belirtmektedir."
+          },
+          {
+            "id": "q22",
+            "skipped": "abstained"
+          },
+          {
+            "id": "q23",
+            "skipped": "abstained"
+          },
+          {
+            "id": "q24",
+            "faithfulness": 1.0,
+            "faithfulness_raw": 5.0,
+            "faithfulness_reason": "Cevap, kaynak 3'te belirtilen teknik özelliklerle tamamen uyumlu ve başka bir iddia içermiyor.",
+            "relevance": 1.0,
+            "relevance_raw": 5.0,
+            "relevance_reason": "Cevap, Aura Hub G2'nin RAM ve depolama kapasitesini tam ve doğrudan belirtmektedir."
+          },
+          {
+            "id": "q25",
+            "skipped": "abstained"
+          },
+          {
+            "id": "q26",
+            "faithfulness": 1.0,
+            "faithfulness_raw": 5.0,
+            "faithfulness_reason": "Cevap, kaynak 2'de belirtilen çalışma sıcaklık aralığı bilgisine dayanıyor ve başka bir iddia içermiyor.",
+            "relevance": 1.0,
+            "relevance_raw": 5.0,
+            "relevance_reason": "Cevap, Hub'ın çalışma sıcaklık aralığını doğrudan ve tam olarak belirtmektedir."
+          },
+          {
+            "id": "q27",
+            "faithfulness": 0.5,
+            "faithfulness_raw": 3.0,
+            "faithfulness_reason": "Cevapta belirtilen 'Cihazlar' ve 'Genel Bakış' sekmeleri kaynaklarda destekleniyor. Ancak 'etkin senaryolar ve favori cihazların hızlı kontrolü' bir sekme olarak değil, 'Genel Bakış' sekmesinin işlevleri olarak belirtilmiş. Beş ana sekme olduğu iddiası ise kaynaklarda belirtilmemiş.",
+            "relevance": 0.5,
+            "relevance_raw": 3.0,
+            "relevance_reason": "Cevap, ana sekme sayısını veriyor ancak sadece dört sekme adı veriyor ve bir tanesi eksik."
+          },
+          {
+            "id": "q28",
+            "faithfulness": 1.0,
+            "faithfulness_raw": 5.0,
+            "faithfulness_reason": "Cevap, kaynak 1'de belirtilen termostat için önerilen protokol olan Thread ile tamamen uyumludur.",
+            "relevance": 1.0,
+            "relevance_raw": 5.0,
+            "relevance_reason": "Cevap, termostat için önerilen bağlantı protokolünü doğrudan belirtmiş."
+          },
+          {
+            "id": "q29",
+            "faithfulness": 1.0,
+            "faithfulness_raw": 5.0,
+            "faithfulness_reason": "Cevap, kaynak 1'de belirtilen Misafir (Guest) rolünün yetkileriyle tamamen uyumlu. Herhangi bir uydurma bilgi yok.",
+            "relevance": 0.5,
+            "relevance_raw": 3.0,
+            "relevance_reason": "Cevap, Misafir rolünün yetkileri hakkında genel bir bilgi veriyor ancak detaylandırılmamış."
+          },
+          {
+            "id": "q30",
+            "faithfulness": 1.0,
+            "faithfulness_raw": 5.0,
+            "faithfulness_reason": "Cevap, kaynak 1'de verilen bilgilerle tamamen uyumlu. Fabrika ayarlarına döndürme işlemi, sıfırlama düğmesine 10 saniye basılı tutma, işlem sonrası tüm cihaz eşleştirmeleri, senaryolar ve yerel ayarların silinmesi ve işlemin geri alınamaz olduğu gibi detaylar kaynakta belirtilmiş.",
+            "relevance": 1.0,
+            "relevance_raw": 5.0,
+            "relevance_reason": "Cevap, Hub'ı fabrika ayarlarına döndürme işlemini açık ve doğrudan bir şekilde açıklıyor."
+          },
+          {
+            "id": "q31",
+            "faithfulness": 1.0,
+            "faithfulness_raw": 5.0,
+            "faithfulness_reason": "Cevap, kaynaklarda belirtilen otomasyon bileşenlerini doğru bir şekilde özetlemektedir.",
+            "relevance": 1.0,
+            "relevance_raw": 5.0,
+            "relevance_reason": "Cevap, otomasyonun kaç bileşenden oluştuğunu doğrudan ve net bir şekilde açıklıyor."
+          },
+          {
+            "id": "q32",
+            "faithfulness": 1.0,
+            "faithfulness_raw": 5.0,
+            "faithfulness_reason": "Cevap, kaynaklarda belirtilen bilgileri doğru bir şekilde yansıtıyor. Yerel otomasyonların internet olmadan çalışmaya devam ettiği ve bulut tabanlı özelliklerin internet bağlantısı gerektirdiği bilgisi kaynaklarda mevcut.",
+            "relevance": 1.0,
+            "relevance_raw": 5.0,
+            "relevance_reason": "Cevap, internet bağlantısı olmadan hub'ın nasıl çalışmaya devam edebileceğini açıklıyor ve soruyu tam olarak yanıtlıyor."
+          },
+          {
+            "id": "q33",
+            "faithfulness": 1.0,
+            "faithfulness_raw": 5.0,
+            "faithfulness_reason": "Cevap, Kaynak 1'deki bilgiyle tamamen uyumlu ve başka bir iddia içermiyor.",
+            "relevance": 1.0,
+            "relevance_raw": 5.0,
+            "relevance_reason": "Cevap, parolayı unutan bir kişinin ne yapması gerektiğini açık ve doğrudan bir şekilde açıklıyor."
+          },
+          {
+            "id": "q34",
+            "faithfulness": 1.0,
+            "faithfulness_raw": 5.0,
+            "faithfulness_reason": "Cevap, kaynaklarda belirtilen menzil, parazit ve bağlı cihaz sayısının kararlılığı etkileyebileceği bilgilerine dayanıyor.",
+            "relevance": 1.0,
+            "relevance_raw": 5.0,
+            "relevance_reason": "Cevap, cihazın bağlantı kaybı sorununa yönelik olası nedenleri açıklayarak soruyu tam ve doğrudan karşılıyor."
+          },
+          {
+            "id": "q35",
+            "faithfulness": 1.0,
+            "faithfulness_raw": 5.0,
+            "faithfulness_reason": "Cevap, kaynak 3'te belirtilen olay geçmişi / kullanım kayıtlarının saklama süreleriyle tamamen uyumlu.",
+            "relevance": 1.0,
+            "relevance_raw": 5.0,
+            "relevance_reason": "Cevap, olay geçmişi verilerinin saklanma süresini doğrudan ve net bir şekilde açıklıyor."
+          },
+          {
+            "id": "q36",
+            "faithfulness": 1.0,
+            "faithfulness_raw": 5.0,
+            "faithfulness_reason": "Cevap, Kaynak 1'de belirtilen silme talebi sonrası verilerin 30 gün içinde kalıcı olarak silineceği bilgisini doğru bir şekilde aktarıyor.",
+            "relevance": 1.0,
+            "relevance_raw": 5.0,
+            "relevance_reason": "Cevap, verilerin ne zaman kalıcı olarak silineceği sorusunu doğrudan ve tam olarak yanıtlıyor."
+          },
+          {
+            "id": "q37",
+            "faithfulness": 1.0,
+            "faithfulness_raw": 5.0,
+            "faithfulness_reason": "Cevap, kaynak 2'deki bilgilerle tamamen uyumlu. E-205 hata kodu, aşırı ısınma durumunu ve çözüm önerisini doğru bir şekilde aktarıyor.",
+            "relevance": 1.0,
+            "relevance_raw": 5.0,
+            "relevance_reason": "Cevap, soruda istenen hata kodunu ve soğutma süresini tam olarak vermektedir."
+          },
+          {
+            "id": "q38",
+            "faithfulness": 1.0,
+            "faithfulness_raw": 5.0,
+            "faithfulness_reason": "Cevap, kaynaklarda belirtilen E-101 hata kodu ve çözüm önerisi ile tamamen uyumlu. Her bilgi kaynaklarda mevcut.",
+            "relevance": 0.5,
+            "relevance_raw": 3.0,
+            "relevance_reason": "Cevap, belirli bir hata kodu ve anlamını veriyor, ancak bu kodun genel geçer bir standart olup olmadığı belirsiz. Ayrıca, kaynak spesifik bir cihaz veya sistemle ilgili olabilir."
+          },
+          {
+            "id": "q39",
+            "faithfulness": 1.0,
+            "faithfulness_raw": 5.0,
+            "faithfulness_reason": "Cevap, kaynaklarda belirtilen bilgileri doğru bir şekilde yansıtıyor. Yapay zekâ destekli senaryoların yalnızca Pro planında bulunduğu ve Pro planında olay geçmişinin 90 gün saklandığı bilgileri kaynak 4 ve kaynak 3'te doğrulanmaktadır.",
+            "relevance": 1.0,
+            "relevance_raw": 5.0,
+            "relevance_reason": "Cevap, yapay zekâ destekli senaryoların hangi planda bulunduğunu ve olay geçmişinin kaç gün saklandığını tam ve doğrudan yanıtlıyor."
+          },
+          {
+            "id": "q40",
+            "faithfulness": 1.0,
+            "faithfulness_raw": 5.0,
+            "faithfulness_reason": "Cevap, verilen kaynaklardaki bilgilerle tamamen uyumlu. Maksimum bağlı cihaz sayısı, kararlılık sorunları ve öneriler kaynaklarda belirtilmiş.",
+            "relevance": 1.0,
+            "relevance_raw": 5.0,
+            "relevance_reason": "Cevap, maksimum kaç cihaz bağlanabileceğini ve sınıra yaklaşınca ne olacağını doğrudan ve tam olarak açıklıyor."
+          }
+        ]
+      }
+    },
+    "hybrid": {
+      "retrieval": {
+        "mode": "hybrid",
+        "n": 40,
+        "recall_at_k": {
+          "3": 0.975,
+          "5": 0.975
+        },
+        "mrr": 0.8958333333333334,
+        "per_question": [
+          {
+            "id": "q01",
+            "expected_sources": [
+              "01_aura_kurulum_kilavuzu.md"
+            ],
+            "retrieved": [
+              "01_aura_kurulum_kilavuzu.md",
+              "01_aura_kurulum_kilavuzu.md",
+              "06_detayli_kullanici_kilavuzu.pdf",
+              "01_aura_kurulum_kilavuzu.md",
+              "05_teknik_ozellikler_scan.pdf"
+            ],
+            "recall": {
+              "3": 1.0,
+              "5": 1.0
+            },
+            "reciprocal_rank": 1.0
+          },
+          {
+            "id": "q02",
+            "expected_sources": [
+              "01_aura_kurulum_kilavuzu.md"
+            ],
+            "retrieved": [
+              "01_aura_kurulum_kilavuzu.md",
+              "06_detayli_kullanici_kilavuzu.pdf",
+              "07_sorun_giderme_sss.pdf",
+              "07_sorun_giderme_sss.pdf",
+              "03_led_durum_gostergeleri.png"
+            ],
+            "recall": {
+              "3": 1.0,
+              "5": 1.0
+            },
+            "reciprocal_rank": 1.0
+          },
+          {
+            "id": "q03",
+            "expected_sources": [
+              "01_aura_kurulum_kilavuzu.md"
+            ],
+            "retrieved": [
+              "01_aura_kurulum_kilavuzu.md",
+              "04_hata_kodlari.xlsx",
+              "07_sorun_giderme_sss.pdf",
+              "06_detayli_kullanici_kilavuzu.pdf",
+              "06_detayli_kullanici_kilavuzu.pdf"
+            ],
+            "recall": {
+              "3": 1.0,
+              "5": 1.0
+            },
+            "reciprocal_rank": 1.0
+          },
+          {
+            "id": "q04",
+            "expected_sources": [
+              "01_aura_kurulum_kilavuzu.md",
+              "05_teknik_ozellikler_scan.pdf"
+            ],
+            "retrieved": [
+              "06_detayli_kullanici_kilavuzu.pdf",
+              "03_led_durum_gostergeleri.png",
+              "01_aura_kurulum_kilavuzu.md",
+              "07_sorun_giderme_sss.pdf",
+              "01_aura_kurulum_kilavuzu.md"
+            ],
+            "recall": {
+              "3": 1.0,
+              "5": 1.0
+            },
+            "reciprocal_rank": 0.3333333333333333
+          },
+          {
+            "id": "q05",
+            "expected_sources": [
+              "02_abonelik_ve_iade_politikasi.pdf"
+            ],
+            "retrieved": [
+              "02_abonelik_ve_iade_politikasi.pdf",
+              "06_detayli_kullanici_kilavuzu.pdf",
+              "07_sorun_giderme_sss.pdf",
+              "06_detayli_kullanici_kilavuzu.pdf",
+              "07_sorun_giderme_sss.pdf"
+            ],
+            "recall": {
+              "3": 1.0,
+              "5": 1.0
+            },
+            "reciprocal_rank": 1.0
+          },
+          {
+            "id": "q06",
+            "expected_sources": [
+              "02_abonelik_ve_iade_politikasi.pdf"
+            ],
+            "retrieved": [
+              "07_sorun_giderme_sss.pdf",
+              "02_abonelik_ve_iade_politikasi.pdf",
+              "06_detayli_kullanici_kilavuzu.pdf",
+              "07_sorun_giderme_sss.pdf",
+              "06_detayli_kullanici_kilavuzu.pdf"
+            ],
+            "recall": {
+              "3": 1.0,
+              "5": 1.0
+            },
+            "reciprocal_rank": 0.5
+          },
+          {
+            "id": "q07",
+            "expected_sources": [
+              "02_abonelik_ve_iade_politikasi.pdf"
+            ],
+            "retrieved": [
+              "02_abonelik_ve_iade_politikasi.pdf",
+              "02_abonelik_ve_iade_politikasi.pdf",
+              "07_sorun_giderme_sss.pdf",
+              "07_sorun_giderme_sss.pdf",
+              "07_sorun_giderme_sss.pdf"
+            ],
+            "recall": {
+              "3": 1.0,
+              "5": 1.0
+            },
+            "reciprocal_rank": 1.0
+          },
+          {
+            "id": "q08",
+            "expected_sources": [
+              "02_abonelik_ve_iade_politikasi.pdf"
+            ],
+            "retrieved": [
+              "07_sorun_giderme_sss.pdf",
+              "02_abonelik_ve_iade_politikasi.pdf",
+              "08_gizlilik_ve_veri_politikasi.pdf",
+              "08_gizlilik_ve_veri_politikasi.pdf",
+              "02_abonelik_ve_iade_politikasi.pdf"
+            ],
+            "recall": {
+              "3": 1.0,
+              "5": 1.0
+            },
+            "reciprocal_rank": 0.5
+          },
+          {
+            "id": "q09",
+            "expected_sources": [
+              "02_abonelik_ve_iade_politikasi.pdf"
+            ],
+            "retrieved": [
+              "02_abonelik_ve_iade_politikasi.pdf",
+              "03_led_durum_gostergeleri.png",
+              "03_led_durum_gostergeleri.png",
+              "07_sorun_giderme_sss.pdf",
+              "02_abonelik_ve_iade_politikasi.pdf"
+            ],
+            "recall": {
+              "3": 1.0,
+              "5": 1.0
+            },
+            "reciprocal_rank": 1.0
+          },
+          {
+            "id": "q10",
+            "expected_sources": [
+              "03_led_durum_gostergeleri.png"
+            ],
+            "retrieved": [
+              "03_led_durum_gostergeleri.png",
+              "03_led_durum_gostergeleri.png",
+              "01_aura_kurulum_kilavuzu.md",
+              "03_led_durum_gostergeleri.png",
+              "03_led_durum_gostergeleri.png"
+            ],
+            "recall": {
+              "3": 1.0,
+              "5": 1.0
+            },
+            "reciprocal_rank": 1.0
+          },
+          {
+            "id": "q11",
+            "expected_sources": [
+              "03_led_durum_gostergeleri.png"
+            ],
+            "retrieved": [
+              "03_led_durum_gostergeleri.png",
+              "03_led_durum_gostergeleri.png",
+              "03_led_durum_gostergeleri.png",
+              "01_aura_kurulum_kilavuzu.md",
+              "03_led_durum_gostergeleri.png"
+            ],
+            "recall": {
+              "3": 1.0,
+              "5": 1.0
+            },
+            "reciprocal_rank": 1.0
+          },
+          {
+            "id": "q12",
+            "expected_sources": [
+              "03_led_durum_gostergeleri.png"
+            ],
+            "retrieved": [
+              "03_led_durum_gostergeleri.png",
+              "03_led_durum_gostergeleri.png",
+              "03_led_durum_gostergeleri.png",
+              "03_led_durum_gostergeleri.png",
+              "03_led_durum_gostergeleri.png"
+            ],
+            "recall": {
+              "3": 1.0,
+              "5": 1.0
+            },
+            "reciprocal_rank": 1.0
+          },
+          {
+            "id": "q13",
+            "expected_sources": [
+              "03_led_durum_gostergeleri.png"
+            ],
+            "retrieved": [
+              "03_led_durum_gostergeleri.png",
+              "03_led_durum_gostergeleri.png",
+              "03_led_durum_gostergeleri.png",
+              "01_aura_kurulum_kilavuzu.md",
+              "03_led_durum_gostergeleri.png"
+            ],
+            "recall": {
+              "3": 1.0,
+              "5": 1.0
+            },
+            "reciprocal_rank": 1.0
+          },
+          {
+            "id": "q14",
+            "expected_sources": [
+              "03_led_durum_gostergeleri.png"
+            ],
+            "retrieved": [
+              "03_led_durum_gostergeleri.png",
+              "03_led_durum_gostergeleri.png",
+              "01_aura_kurulum_kilavuzu.md",
+              "03_led_durum_gostergeleri.png",
+              "03_led_durum_gostergeleri.png"
+            ],
+            "recall": {
+              "3": 1.0,
+              "5": 1.0
+            },
+            "reciprocal_rank": 1.0
+          },
+          {
+            "id": "q15",
+            "expected_sources": [
+              "03_led_durum_gostergeleri.png"
+            ],
+            "retrieved": [
+              "03_led_durum_gostergeleri.png",
+              "03_led_durum_gostergeleri.png",
+              "01_aura_kurulum_kilavuzu.md",
+              "03_led_durum_gostergeleri.png",
+              "03_led_durum_gostergeleri.png"
+            ],
+            "recall": {
+              "3": 1.0,
+              "5": 1.0
+            },
+            "reciprocal_rank": 1.0
+          },
+          {
+            "id": "q16",
+            "expected_sources": [
+              "04_hata_kodlari.xlsx"
+            ],
+            "retrieved": [
+              "04_hata_kodlari.xlsx",
+              "04_hata_kodlari.xlsx",
+              "04_hata_kodlari.xlsx",
+              "07_sorun_giderme_sss.pdf",
+              "01_aura_kurulum_kilavuzu.md"
+            ],
+            "recall": {
+              "3": 1.0,
+              "5": 1.0
+            },
+            "reciprocal_rank": 1.0
+          },
+          {
+            "id": "q17",
+            "expected_sources": [
+              "04_hata_kodlari.xlsx"
+            ],
+            "retrieved": [
+              "04_hata_kodlari.xlsx",
+              "04_hata_kodlari.xlsx",
+              "04_hata_kodlari.xlsx",
+              "06_detayli_kullanici_kilavuzu.pdf",
+              "04_hata_kodlari.xlsx"
+            ],
+            "recall": {
+              "3": 1.0,
+              "5": 1.0
+            },
+            "reciprocal_rank": 1.0
+          },
+          {
+            "id": "q18",
+            "expected_sources": [
+              "04_hata_kodlari.xlsx"
+            ],
+            "retrieved": [
+              "04_hata_kodlari.xlsx",
+              "04_hata_kodlari.xlsx",
+              "04_hata_kodlari.xlsx",
+              "06_detayli_kullanici_kilavuzu.pdf",
+              "07_sorun_giderme_sss.pdf"
+            ],
+            "recall": {
+              "3": 1.0,
+              "5": 1.0
+            },
+            "reciprocal_rank": 1.0
+          },
+          {
+            "id": "q19",
+            "expected_sources": [
+              "04_hata_kodlari.xlsx"
+            ],
+            "retrieved": [
+              "04_hata_kodlari.xlsx",
+              "04_hata_kodlari.xlsx",
+              "07_sorun_giderme_sss.pdf",
+              "04_hata_kodlari.xlsx",
+              "07_sorun_giderme_sss.pdf"
+            ],
+            "recall": {
+              "3": 1.0,
+              "5": 1.0
+            },
+            "reciprocal_rank": 1.0
+          },
+          {
+            "id": "q20",
+            "expected_sources": [
+              "04_hata_kodlari.xlsx"
+            ],
+            "retrieved": [
+              "04_hata_kodlari.xlsx",
+              "01_aura_kurulum_kilavuzu.md",
+              "04_hata_kodlari.xlsx",
+              "07_sorun_giderme_sss.pdf",
+              "04_hata_kodlari.xlsx"
+            ],
+            "recall": {
+              "3": 1.0,
+              "5": 1.0
+            },
+            "reciprocal_rank": 1.0
+          },
+          {
+            "id": "q21",
+            "expected_sources": [
+              "04_hata_kodlari.xlsx"
+            ],
+            "retrieved": [
+              "04_hata_kodlari.xlsx",
+              "07_sorun_giderme_sss.pdf",
+              "04_hata_kodlari.xlsx",
+              "07_sorun_giderme_sss.pdf",
+              "04_hata_kodlari.xlsx"
+            ],
+            "recall": {
+              "3": 1.0,
+              "5": 1.0
+            },
+            "reciprocal_rank": 1.0
+          },
+          {
+            "id": "q22",
+            "expected_sources": [
+              "05_teknik_ozellikler_scan.pdf"
+            ],
+            "retrieved": [
+              "03_led_durum_gostergeleri.png",
+              "05_teknik_ozellikler_scan.pdf",
+              "02_abonelik_ve_iade_politikasi.pdf",
+              "03_led_durum_gostergeleri.png",
+              "01_aura_kurulum_kilavuzu.md"
+            ],
+            "recall": {
+              "3": 1.0,
+              "5": 1.0
+            },
+            "reciprocal_rank": 0.5
+          },
+          {
+            "id": "q23",
+            "expected_sources": [
+              "05_teknik_ozellikler_scan.pdf"
+            ],
+            "retrieved": [
+              "06_detayli_kullanici_kilavuzu.pdf",
+              "03_led_durum_gostergeleri.png",
+              "06_detayli_kullanici_kilavuzu.pdf",
+              "01_aura_kurulum_kilavuzu.md",
+              "01_aura_kurulum_kilavuzu.md"
+            ],
+            "recall": {
+              "3": 0.0,
+              "5": 0.0
+            },
+            "reciprocal_rank": 0.0
+          },
+          {
+            "id": "q24",
+            "expected_sources": [
+              "05_teknik_ozellikler_scan.pdf"
+            ],
+            "retrieved": [
+              "05_teknik_ozellikler_scan.pdf",
+              "02_abonelik_ve_iade_politikasi.pdf",
+              "07_sorun_giderme_sss.pdf",
+              "03_led_durum_gostergeleri.png",
+              "07_sorun_giderme_sss.pdf"
+            ],
+            "recall": {
+              "3": 1.0,
+              "5": 1.0
+            },
+            "reciprocal_rank": 1.0
+          },
+          {
+            "id": "q25",
+            "expected_sources": [
+              "05_teknik_ozellikler_scan.pdf"
+            ],
+            "retrieved": [
+              "03_led_durum_gostergeleri.png",
+              "05_teknik_ozellikler_scan.pdf",
+              "03_led_durum_gostergeleri.png",
+              "01_aura_kurulum_kilavuzu.md",
+              "03_led_durum_gostergeleri.png"
+            ],
+            "recall": {
+              "3": 1.0,
+              "5": 1.0
+            },
+            "reciprocal_rank": 0.5
+          },
+          {
+            "id": "q26",
+            "expected_sources": [
+              "05_teknik_ozellikler_scan.pdf"
+            ],
+            "retrieved": [
+              "05_teknik_ozellikler_scan.pdf",
+              "03_led_durum_gostergeleri.png",
+              "05_teknik_ozellikler_scan.pdf",
+              "03_led_durum_gostergeleri.png",
+              "06_detayli_kullanici_kilavuzu.pdf"
+            ],
+            "recall": {
+              "3": 1.0,
+              "5": 1.0
+            },
+            "reciprocal_rank": 1.0
+          },
+          {
+            "id": "q27",
+            "expected_sources": [
+              "06_detayli_kullanici_kilavuzu.pdf"
+            ],
+            "retrieved": [
+              "06_detayli_kullanici_kilavuzu.pdf",
+              "02_abonelik_ve_iade_politikasi.pdf",
+              "06_detayli_kullanici_kilavuzu.pdf",
+              "06_detayli_kullanici_kilavuzu.pdf",
+              "01_aura_kurulum_kilavuzu.md"
+            ],
+            "recall": {
+              "3": 1.0,
+              "5": 1.0
+            },
+            "reciprocal_rank": 1.0
+          },
+          {
+            "id": "q28",
+            "expected_sources": [
+              "06_detayli_kullanici_kilavuzu.pdf"
+            ],
+            "retrieved": [
+              "06_detayli_kullanici_kilavuzu.pdf",
+              "06_detayli_kullanici_kilavuzu.pdf",
+              "06_detayli_kullanici_kilavuzu.pdf",
+              "06_detayli_kullanici_kilavuzu.pdf",
+              "06_detayli_kullanici_kilavuzu.pdf"
+            ],
+            "recall": {
+              "3": 1.0,
+              "5": 1.0
+            },
+            "reciprocal_rank": 1.0
+          },
+          {
+            "id": "q29",
+            "expected_sources": [
+              "06_detayli_kullanici_kilavuzu.pdf"
+            ],
+            "retrieved": [
+              "06_detayli_kullanici_kilavuzu.pdf",
+              "06_detayli_kullanici_kilavuzu.pdf",
+              "06_detayli_kullanici_kilavuzu.pdf",
+              "06_detayli_kullanici_kilavuzu.pdf",
+              "07_sorun_giderme_sss.pdf"
+            ],
+            "recall": {
+              "3": 1.0,
+              "5": 1.0
+            },
+            "reciprocal_rank": 1.0
+          },
+          {
+            "id": "q30",
+            "expected_sources": [
+              "06_detayli_kullanici_kilavuzu.pdf"
+            ],
+            "retrieved": [
+              "06_detayli_kullanici_kilavuzu.pdf",
+              "07_sorun_giderme_sss.pdf",
+              "06_detayli_kullanici_kilavuzu.pdf",
+              "01_aura_kurulum_kilavuzu.md",
+              "07_sorun_giderme_sss.pdf"
+            ],
+            "recall": {
+              "3": 1.0,
+              "5": 1.0
+            },
+            "reciprocal_rank": 1.0
+          },
+          {
+            "id": "q31",
+            "expected_sources": [
+              "06_detayli_kullanici_kilavuzu.pdf"
+            ],
+            "retrieved": [
+              "06_detayli_kullanici_kilavuzu.pdf",
+              "06_detayli_kullanici_kilavuzu.pdf",
+              "06_detayli_kullanici_kilavuzu.pdf",
+              "06_detayli_kullanici_kilavuzu.pdf",
+              "06_detayli_kullanici_kilavuzu.pdf"
+            ],
+            "recall": {
+              "3": 1.0,
+              "5": 1.0
+            },
+            "reciprocal_rank": 1.0
+          },
+          {
+            "id": "q32",
+            "expected_sources": [
+              "07_sorun_giderme_sss.pdf"
+            ],
+            "retrieved": [
+              "07_sorun_giderme_sss.pdf",
+              "06_detayli_kullanici_kilavuzu.pdf",
+              "06_detayli_kullanici_kilavuzu.pdf",
+              "03_led_durum_gostergeleri.png",
+              "07_sorun_giderme_sss.pdf"
+            ],
+            "recall": {
+              "3": 1.0,
+              "5": 1.0
+            },
+            "reciprocal_rank": 1.0
+          },
+          {
+            "id": "q33",
+            "expected_sources": [
+              "07_sorun_giderme_sss.pdf"
+            ],
+            "retrieved": [
+              "07_sorun_giderme_sss.pdf",
+              "07_sorun_giderme_sss.pdf",
+              "01_aura_kurulum_kilavuzu.md",
+              "08_gizlilik_ve_veri_politikasi.pdf",
+              "07_sorun_giderme_sss.pdf"
+            ],
+            "recall": {
+              "3": 1.0,
+              "5": 1.0
+            },
+            "reciprocal_rank": 1.0
+          },
+          {
+            "id": "q34",
+            "expected_sources": [
+              "07_sorun_giderme_sss.pdf"
+            ],
+            "retrieved": [
+              "07_sorun_giderme_sss.pdf",
+              "06_detayli_kullanici_kilavuzu.pdf",
+              "06_detayli_kullanici_kilavuzu.pdf",
+              "07_sorun_giderme_sss.pdf",
+              "07_sorun_giderme_sss.pdf"
+            ],
+            "recall": {
+              "3": 1.0,
+              "5": 1.0
+            },
+            "reciprocal_rank": 1.0
+          },
+          {
+            "id": "q35",
+            "expected_sources": [
+              "08_gizlilik_ve_veri_politikasi.pdf"
+            ],
+            "retrieved": [
+              "07_sorun_giderme_sss.pdf",
+              "08_gizlilik_ve_veri_politikasi.pdf",
+              "06_detayli_kullanici_kilavuzu.pdf",
+              "08_gizlilik_ve_veri_politikasi.pdf",
+              "08_gizlilik_ve_veri_politikasi.pdf"
+            ],
+            "recall": {
+              "3": 1.0,
+              "5": 1.0
+            },
+            "reciprocal_rank": 0.5
+          },
+          {
+            "id": "q36",
+            "expected_sources": [
+              "08_gizlilik_ve_veri_politikasi.pdf"
+            ],
+            "retrieved": [
+              "08_gizlilik_ve_veri_politikasi.pdf",
+              "07_sorun_giderme_sss.pdf",
+              "07_sorun_giderme_sss.pdf",
+              "08_gizlilik_ve_veri_politikasi.pdf",
+              "07_sorun_giderme_sss.pdf"
+            ],
+            "recall": {
+              "3": 1.0,
+              "5": 1.0
+            },
+            "reciprocal_rank": 1.0
+          },
+          {
+            "id": "q37",
+            "expected_sources": [
+              "04_hata_kodlari.xlsx"
+            ],
+            "retrieved": [
+              "04_hata_kodlari.xlsx",
+              "07_sorun_giderme_sss.pdf",
+              "04_hata_kodlari.xlsx",
+              "04_hata_kodlari.xlsx",
+              "04_hata_kodlari.xlsx"
+            ],
+            "recall": {
+              "3": 1.0,
+              "5": 1.0
+            },
+            "reciprocal_rank": 1.0
+          },
+          {
+            "id": "q38",
+            "expected_sources": [
+              "01_aura_kurulum_kilavuzu.md",
+              "04_hata_kodlari.xlsx"
+            ],
+            "retrieved": [
+              "04_hata_kodlari.xlsx",
+              "01_aura_kurulum_kilavuzu.md",
+              "01_aura_kurulum_kilavuzu.md",
+              "07_sorun_giderme_sss.pdf",
+              "07_sorun_giderme_sss.pdf"
+            ],
+            "recall": {
+              "3": 1.0,
+              "5": 1.0
+            },
+            "reciprocal_rank": 1.0
+          },
+          {
+            "id": "q39",
+            "expected_sources": [
+              "02_abonelik_ve_iade_politikasi.pdf",
+              "06_detayli_kullanici_kilavuzu.pdf"
+            ],
+            "retrieved": [
+              "06_detayli_kullanici_kilavuzu.pdf",
+              "01_aura_kurulum_kilavuzu.md",
+              "08_gizlilik_ve_veri_politikasi.pdf",
+              "08_gizlilik_ve_veri_politikasi.pdf",
+              "02_abonelik_ve_iade_politikasi.pdf"
+            ],
+            "recall": {
+              "3": 1.0,
+              "5": 1.0
+            },
+            "reciprocal_rank": 1.0
+          },
+          {
+            "id": "q40",
+            "expected_sources": [
+              "05_teknik_ozellikler_scan.pdf",
+              "07_sorun_giderme_sss.pdf"
+            ],
+            "retrieved": [
+              "05_teknik_ozellikler_scan.pdf",
+              "06_detayli_kullanici_kilavuzu.pdf",
+              "07_sorun_giderme_sss.pdf",
+              "06_detayli_kullanici_kilavuzu.pdf",
+              "07_sorun_giderme_sss.pdf"
+            ],
+            "recall": {
+              "3": 1.0,
+              "5": 1.0
+            },
+            "reciprocal_rank": 1.0
+          }
+        ]
+      },
+      "abstention": {
+        "correct_abstentions": 5,
+        "n_abstention": 5,
+        "abstention_recall": 1.0,
+        "false_abstentions": 3,
+        "n_answerable": 40,
+        "answer_precision": 1.0,
+        "false_abstained_ids": [
+          "q22",
+          "q23",
+          "q24"
+        ],
+        "wrongly_answered_ids": []
+      },
+      "generation": {
+        "judge_model": "gpt-4o",
+        "judged": 37,
+        "skipped_abstained": 3,
+        "faithfulness": 0.9864864864864865,
+        "answer_relevance": 0.918918918918919,
+        "per_question": [
+          {
+            "id": "q01",
+            "faithfulness": 1.0,
+            "faithfulness_raw": 5.0,
+            "faithfulness_reason": "Cevap, kaynak 4'te belirtilen bilgilere dayanıyor ve başka bir iddia içermiyor.",
+            "relevance": 1.0,
+            "relevance_raw": 5.0,
+            "relevance_reason": "Cevap, Aura Hub G2'yi kurmak için gerekli olan mobil uygulamayı doğrudan belirtmektedir."
+          },
+          {
+            "id": "q02",
+            "faithfulness": 1.0,
+            "faithfulness_raw": 5.0,
+            "faithfulness_reason": "Cevap, Kaynak 1'de belirtilen bilgiye dayanıyor ve başka bir iddia içermiyor.",
+            "relevance": 1.0,
+            "relevance_raw": 5.0,
+            "relevance_reason": "Cevap, Hub'ın tamamen başlamasının ne kadar sürdüğünü doğrudan ve net bir şekilde yanıtlıyor."
+          },
+          {
+            "id": "q03",
+            "faithfulness": 1.0,
+            "faithfulness_raw": 5.0,
+            "faithfulness_reason": "Cevap, Kaynak 1'deki bilgilerle tamamen uyumlu ve destekleniyor.",
+            "relevance": 1.0,
+            "relevance_raw": 5.0,
+            "relevance_reason": "Cevap, telefonun hub'ı algılamadığı durumda yapılması gereken adımı doğrudan ve net bir şekilde açıklıyor."
+          },
+          {
+            "id": "q04",
+            "faithfulness": 1.0,
+            "faithfulness_raw": 5.0,
+            "faithfulness_reason": "Cevap, kaynak 5'te belirtilen bilgilere dayanıyor ve doğru bir şekilde aktarılmış.",
+            "relevance": 1.0,
+            "relevance_raw": 5.0,
+            "relevance_reason": "Cevap, Aura Hub G2'nin desteklediği Wi-Fi bantlarını tam ve doğrudan belirtmektedir."
+          },
+          {
+            "id": "q05",
+            "faithfulness": 1.0,
+            "faithfulness_raw": 5.0,
+            "faithfulness_reason": "Cevap, Kaynak 1'deki bilgilerle tamamen uyumlu ve destekleniyor. Pro planının fiyatı, özellikleri ve içerikleri doğru bir şekilde belirtilmiş.",
+            "relevance": 1.0,
+            "relevance_raw": 5.0,
+            "relevance_reason": "Cevap, Pro abonelik planının aylık maliyetini ve içeriğini tam olarak açıklıyor."
+          },
+          {
+            "id": "q06",
+            "faithfulness": 1.0,
+            "faithfulness_raw": 5.0,
+            "faithfulness_reason": "Cevap, kaynak 2'de belirtilen bilgilere dayanıyor ve doğru bir şekilde aktarılmış.",
+            "relevance": 1.0,
+            "relevance_raw": 5.0,
+            "relevance_reason": "Cevap, Plus planının kaç hub'a izin verdiğini doğrudan ve tam olarak yanıtlıyor."
+          },
+          {
+            "id": "q07",
+            "faithfulness": 1.0,
+            "faithfulness_raw": 5.0,
+            "faithfulness_reason": "Cevap, Kaynak 1'de belirtilen abonelik iptali ve sonrasındaki süreçle tamamen uyumlu. Herhangi bir uydurma bilgi yok.",
+            "relevance": 1.0,
+            "relevance_raw": 5.0,
+            "relevance_reason": "Cevap, abonelik iptali sonrasında ne olacağını açıkça ve doğrudan açıklıyor."
+          },
+          {
+            "id": "q08",
+            "faithfulness": 1.0,
+            "faithfulness_raw": 5.0,
+            "faithfulness_reason": "Cevap, kaynak 2'de belirtilen iade politikasına tamamen uygun ve doğru bir şekilde yansıtıyor.",
+            "relevance": 1.0,
+            "relevance_raw": 5.0,
+            "relevance_reason": "Cevap, donanımın iade süresini net bir şekilde belirtmiş ve soruyu tam olarak yanıtlamıştır."
+          },
+          {
+            "id": "q09",
+            "faithfulness": 1.0,
+            "faithfulness_raw": 5.0,
+            "faithfulness_reason": "Cevap, kaynak 1'de belirtilen garanti süresi ve koşullarıyla tamamen uyumludur.",
+            "relevance": 1.0,
+            "relevance_raw": 5.0,
+            "relevance_reason": "Cevap, Aura Hub G2'nin garanti süresini doğrudan ve tam olarak yanıtlıyor."
+          },
+          {
+            "id": "q10",
+            "faithfulness": 1.0,
+            "faithfulness_raw": 5.0,
+            "faithfulness_reason": "Cevap, kaynak 1'de belirtilen bilgiyle tamamen uyumlu. Sabit kırmızı LED'in internet bağlantısının olmadığını gösterdiği doğru.",
+            "relevance": 0.5,
+            "relevance_raw": 3.0,
+            "relevance_reason": "Cevap, sabit kırmızı LED'in ne anlama geldiğine dair bir açıklama sunuyor, ancak bu açıklama genelleyici ve her cihaz için geçerli olmayabilir. Daha fazla bağlam veya cihaz türüne özgü bilgi eksik."
+          },
+          {
+            "id": "q11",
+            "faithfulness": 1.0,
+            "faithfulness_raw": 5.0,
+            "faithfulness_reason": "Cevap, kaynak 1'deki bilgiyle tamamen uyumlu ve başka bir iddia içermiyor.",
+            "relevance": 1.0,
+            "relevance_raw": 5.0,
+            "relevance_reason": "Cevap, yanıp sönen mor LED gördüğünde ne yapılması gerektiğini açıkça belirtiyor."
+          },
+          {
+            "id": "q12",
+            "faithfulness": 1.0,
+            "faithfulness_raw": 5.0,
+            "faithfulness_reason": "Cevap, kaynak 1'de belirtilen 'yanıp sönen sarı LED'in bellek düşük olduğunu ve hub'ın yeniden başlatılmasının önerildiğini' doğru bir şekilde aktarıyor.",
+            "relevance": 1.0,
+            "relevance_raw": 5.0,
+            "relevance_reason": "Cevap, yanıp sönen sarı LED'in neyi gösterdiğini doğrudan açıklıyor."
+          },
+          {
+            "id": "q13",
+            "faithfulness": 1.0,
+            "faithfulness_raw": 5.0,
+            "faithfulness_reason": "Cevap, kaynak 1'de belirtilen bilgiyle tamamen uyumlu. Hub'ın normal çalıştığında LED'in sabit beyaz renkte olduğu belirtilmiş.",
+            "relevance": 1.0,
+            "relevance_raw": 5.0,
+            "relevance_reason": "Cevap, hub normal çalışırken LED'in rengini doğrudan ve tam olarak belirtmektedir."
+          },
+          {
+            "id": "q14",
+            "faithfulness": 1.0,
+            "faithfulness_raw": 5.0,
+            "faithfulness_reason": "Cevap, kaynak 1'de belirtilen bilgiyle tamamen uyumlu. İlk kurulumun başarıyla tamamlandığında LED'in sabit yeşil yanacağı bilgisi doğru ve kaynaklarda mevcut.",
+            "relevance": 1.0,
+            "relevance_raw": 5.0,
+            "relevance_reason": "Cevap, LED'in rengini belirterek soruyu tam ve doğrudan karşılıyor."
+          },
+          {
+            "id": "q15",
+            "faithfulness": 1.0,
+            "faithfulness_raw": 5.0,
+            "faithfulness_reason": "Cevap, kaynak 1'de belirtilen bilgiyle tamamen uyumlu. Eşleştirme modundayken LED'in yavaş yanıp sönen mavi olarak yanması bilgisi doğru ve kaynaklarda mevcut.",
+            "relevance": 1.0,
+            "relevance_raw": 5.0,
+            "relevance_reason": "Cevap, eşleştirme modundayken LED'in nasıl yandığını tam ve doğrudan açıklıyor."
+          },
+          {
+            "id": "q16",
+            "faithfulness": 1.0,
+            "faithfulness_raw": 5.0,
+            "faithfulness_reason": "Cevap, kaynak 1'de verilen bilgilerle tamamen uyumlu. Hata kodu, anlamı, olası nedeni ve önerilen çözüm doğru bir şekilde aktarılmış.",
+            "relevance": 1.0,
+            "relevance_raw": 5.0,
+            "relevance_reason": "Cevap, E-101 hata kodunun anlamını ve çözümünü doğrudan ve tam olarak açıklıyor."
+          },
+          {
+            "id": "q17",
+            "faithfulness": 1.0,
+            "faithfulness_raw": 5.0,
+            "faithfulness_reason": "Cevap, kaynak 2'de verilen bilgilerle tamamen uyumlu. E-205 hatası, hub'ın aşırı ısınmasından kaynaklanır ve olası nedenleri yetersiz havalandırma veya yüksek ortam sıcaklığı olarak belirtilmiştir.",
+            "relevance": 1.0,
+            "relevance_raw": 5.0,
+            "relevance_reason": "Cevap, E-205 hatasının neden oluştuğunu doğrudan açıklıyor ve olası nedenleri belirtiyor."
+          },
+          {
+            "id": "q18",
+            "faithfulness": 1.0,
+            "faithfulness_raw": 5.0,
+            "faithfulness_reason": "Cevap, kaynaklarda belirtilen E-212 hata kodu ve çözüm önerileriyle tamamen uyumlu. Her bilgi kaynaklarda mevcut.",
+            "relevance": 1.0,
+            "relevance_raw": 5.0,
+            "relevance_reason": "Cevap, firmware güncellemesi başarısız olduğunda görünen hata kodunu ve yapılması gereken adımları açıkça belirtiyor."
+          },
+          {
+            "id": "q19",
+            "faithfulness": 1.0,
+            "faithfulness_raw": 5.0,
+            "faithfulness_reason": "Cevap, kaynak 1'deki bilgilerle tamamen uyumlu. E-301 hatası, Zigbee cihazının bulunamadığını gösterir ve olası nedenleri cihazın menzil dışında olması veya pilinin zayıf olmasıdır.",
+            "relevance": 1.0,
+            "relevance_raw": 5.0,
+            "relevance_reason": "Cevap, E-301 hatasının ne anlama geldiğini ve olası nedenlerini açıklayarak soruyu tam ve doğrudan karşılıyor."
+          },
+          {
+            "id": "q20",
+            "faithfulness": 1.0,
+            "faithfulness_raw": 5.0,
+            "faithfulness_reason": "Cevap, kaynak 1'de verilen E-500 hata kodu bilgileriyle tamamen uyumlu. Tüm bilgiler doğru ve kaynakta mevcut.",
+            "relevance": 0.0,
+            "relevance_raw": 1.0,
+            "relevance_reason": "Cevap, E-500 hatasını donanım arızası olarak tanımlıyor, ancak E-500 genellikle bir sunucu tarafı hata kodu olan HTTP 500 İç Sunucu Hatası ile ilgilidir. Dolayısıyla cevap soruyu doğru ve doğrudan karşılamıyor."
+          },
+          {
+            "id": "q21",
+            "faithfulness": 1.0,
+            "faithfulness_raw": 5.0,
+            "faithfulness_reason": "Cevap, kaynak 1'de belirtilen E-404 hata kodu ve anlamı ile tamamen uyumlu. Başka bir bilgi eklenmemiş.",
+            "relevance": 1.0,
+            "relevance_raw": 5.0,
+            "relevance_reason": "Cevap, bulut senkronizasyonu başarısız olduğunda gösterilen hata kodunu doğrudan belirtmiş."
+          },
+          {
+            "id": "q22",
+            "skipped": "abstained"
+          },
+          {
+            "id": "q23",
+            "skipped": "abstained"
+          },
+          {
+            "id": "q24",
+            "skipped": "abstained"
+          },
+          {
+            "id": "q25",
+            "faithfulness": 1.0,
+            "faithfulness_raw": 5.0,
+            "faithfulness_reason": "Cevap, kaynak 2'de belirtilen teknik özelliklerle tamamen uyumlu ve doğru.",
+            "relevance": 1.0,
+            "relevance_raw": 5.0,
+            "relevance_reason": "Cevap, soruyu tam ve doğrudan karşılıyor; hub'ın güç girişinin kaç watt olduğunu belirtiyor."
+          },
+          {
+            "id": "q26",
+            "faithfulness": 1.0,
+            "faithfulness_raw": 5.0,
+            "faithfulness_reason": "Cevap, kaynak 1'de belirtilen çalışma sıcaklık aralığı bilgisine dayanıyor ve başka bir bilgi eklenmemiş.",
+            "relevance": 1.0,
+            "relevance_raw": 5.0,
+            "relevance_reason": "Cevap, hub'ın çalışma sıcaklık aralığını doğrudan ve tam olarak belirtmektedir."
+          },
+          {
+            "id": "q27",
+            "faithfulness": 0.5,
+            "faithfulness_raw": 3.0,
+            "faithfulness_reason": "Cevap, Aura Home uygulamasında beş ana sekme olduğunu doğru bir şekilde belirtmiş ancak işlevleri hakkında detay verilmediğini söylemiş. Kaynak 1'de sekmelerin işlevleri özetlenmiş, bu nedenle 'detay verilmemiştir' ifadesi kaynaklarla tam uyumlu değil.",
+            "relevance": 0.5,
+            "relevance_raw": 3.0,
+            "relevance_reason": "Cevap, ana sekme sayısını veriyor ancak sekmelerin isimlerini belirtmiyor."
+          },
+          {
+            "id": "q28",
+            "faithfulness": 1.0,
+            "faithfulness_raw": 5.0,
+            "faithfulness_reason": "Cevap, Kaynak 1'de belirtilen termostat için önerilen protokol olan Thread ile tamamen uyumludur.",
+            "relevance": 1.0,
+            "relevance_raw": 5.0,
+            "relevance_reason": "Cevap, termostat için önerilen bağlantı protokolünü doğrudan belirtmiş ve soruyu tam olarak yanıtlamıştır."
+          },
+          {
+            "id": "q29",
+            "faithfulness": 1.0,
+            "faithfulness_raw": 5.0,
+            "faithfulness_reason": "Cevap, kaynak 1'de belirtilen Misafir (Guest) rolünün yetkileriyle tamamen uyumlu. Herhangi bir uydurma bilgi yok.",
+            "relevance": 0.5,
+            "relevance_raw": 3.0,
+            "relevance_reason": "Cevap, Misafir rolünün yetkileri hakkında genel bir bilgi veriyor ancak detaylı bir açıklama sunmuyor."
+          },
+          {
+            "id": "q30",
+            "faithfulness": 1.0,
+            "faithfulness_raw": 5.0,
+            "faithfulness_reason": "Cevap, Kaynak 1'de verilen bilgilerle tamamen uyumlu ve destekleniyor. Herhangi bir uydurma bilgi yok.",
+            "relevance": 1.0,
+            "relevance_raw": 5.0,
+            "relevance_reason": "Cevap, Hub'ı fabrika ayarlarına döndürme işlemini adım adım açıklayarak soruyu tam ve doğrudan karşılıyor."
+          },
+          {
+            "id": "q31",
+            "faithfulness": 1.0,
+            "faithfulness_raw": 5.0,
+            "faithfulness_reason": "Cevap, kaynaklarda belirtilen otomasyon bileşenlerini doğru bir şekilde özetlemektedir. Tetikleyici, koşul ve eylem bileşenleri kaynaklarda açıkça tanımlanmıştır.",
+            "relevance": 1.0,
+            "relevance_raw": 5.0,
+            "relevance_reason": "Cevap, otomasyonun kaç bileşenden oluştuğunu doğrudan ve tam olarak yanıtlıyor."
+          },
+          {
+            "id": "q32",
+            "faithfulness": 1.0,
+            "faithfulness_raw": 5.0,
+            "faithfulness_reason": "Cevap, kaynaklarda belirtilen bilgileri doğru bir şekilde yansıtıyor. Yerel otomasyonların internet olmadan çalışmaya devam ettiği ve bulut tabanlı özelliklerin internet bağlantısı gerektirdiği bilgisi kaynaklarda mevcut.",
+            "relevance": 1.0,
+            "relevance_raw": 5.0,
+            "relevance_reason": "Cevap, hub'ın internet bağlantısı olmadan nasıl çalıştığını ve hangi özelliklerin etkilendiğini açıklayarak soruyu tam olarak yanıtlıyor."
+          },
+          {
+            "id": "q33",
+            "faithfulness": 1.0,
+            "faithfulness_raw": 5.0,
+            "faithfulness_reason": "Cevap, kaynak 1'deki bilgiyle tamamen uyumlu ve başka bir iddia içermiyor.",
+            "relevance": 1.0,
+            "relevance_raw": 5.0,
+            "relevance_reason": "Cevap, parolayı unutan bir kişinin ne yapması gerektiğini açık ve doğrudan bir şekilde açıklıyor."
+          },
+          {
+            "id": "q34",
+            "faithfulness": 1.0,
+            "faithfulness_raw": 5.0,
+            "faithfulness_reason": "Cevap, kaynaklarda belirtilen menzil, parazit ve bağlı cihaz sayısının sınırına yaklaşılması gibi nedenlerle bağlantı sorunlarının yaşanabileceği bilgilerini doğru bir şekilde aktarıyor.",
+            "relevance": 1.0,
+            "relevance_raw": 5.0,
+            "relevance_reason": "Cevap, cihazın bağlantı kaybı sorununa yönelik olası nedenleri açıklayarak soruyu tam ve doğrudan karşılıyor."
+          },
+          {
+            "id": "q35",
+            "faithfulness": 1.0,
+            "faithfulness_raw": 5.0,
+            "faithfulness_reason": "Cevap, Kaynak 3'teki bilgilerle tamamen uyumlu ve destekleniyor.",
+            "relevance": 1.0,
+            "relevance_raw": 5.0,
+            "relevance_reason": "Cevap, olay geçmişi verilerinin saklanma süresini abonelik planlarına göre detaylı bir şekilde açıklayarak soruyu tam olarak yanıtlıyor."
+          },
+          {
+            "id": "q36",
+            "faithfulness": 1.0,
+            "faithfulness_raw": 5.0,
+            "faithfulness_reason": "Cevap, Kaynak 1'de belirtilen bilgiyle tamamen uyumlu ve başka bir iddia içermiyor.",
+            "relevance": 1.0,
+            "relevance_raw": 5.0,
+            "relevance_reason": "Cevap, verilerin silinme süresi hakkında net bir bilgi vererek soruyu tam ve doğrudan karşılıyor."
+          },
+          {
+            "id": "q37",
+            "faithfulness": 1.0,
+            "faithfulness_raw": 5.0,
+            "faithfulness_reason": "Cevap, kaynak 1'deki bilgilerle tamamen uyumlu. E-205 hata kodu, hub'ın aşırı ısındığını belirtir ve önerilen çözüm olarak cihazın kapatılıp en az 15 dakika soğumaya bırakılması gerektiği belirtilmiştir.",
+            "relevance": 1.0,
+            "relevance_raw": 5.0,
+            "relevance_reason": "Cevap, soruda istenen hata kodunu ve soğutma süresini tam olarak vermektedir."
+          },
+          {
+            "id": "q38",
+            "faithfulness": 1.0,
+            "faithfulness_raw": 5.0,
+            "faithfulness_reason": "Cevap, verilen kaynaklarda bulunan bilgilerle tamamen uyumludur. E-101 hata kodunun anlamı, olası nedeni ve önerilen çözümü doğru bir şekilde aktarılmıştır.",
+            "relevance": 0.5,
+            "relevance_raw": 3.0,
+            "relevance_reason": "Cevap, belirli bir hata kodu ve anlamını veriyor, ancak bu kodun genel geçer bir standart mı yoksa belirli bir cihaz veya yazılım için mi geçerli olduğunu belirtmiyor."
+          },
+          {
+            "id": "q39",
+            "faithfulness": 1.0,
+            "faithfulness_raw": 5.0,
+            "faithfulness_reason": "Cevap, kaynak 5'te belirtilen Pro planının yapay zekâ destekli senaryoları içerdiği ve olay geçmişinin 90 gün saklandığı bilgileriyle tamamen uyumludur.",
+            "relevance": 1.0,
+            "relevance_raw": 5.0,
+            "relevance_reason": "Cevap, yapay zekâ destekli senaryoların hangi planda bulunduğunu ve olay geçmişinin kaç gün saklandığını doğrudan ve tam olarak yanıtlıyor."
+          },
+          {
+            "id": "q40",
+            "faithfulness": 1.0,
+            "faithfulness_raw": 5.0,
+            "faithfulness_reason": "Cevap, kaynaklarda belirtilen maksimum cihaz sayısı, yavaşlama ve kararlılık sorunları ile ilgili bilgilerle tamamen uyumlu. Öneriler de kaynaklarda yer alıyor.",
+            "relevance": 1.0,
+            "relevance_raw": 5.0,
+            "relevance_reason": "Cevap, maksimum kaç cihaz bağlanabileceğini ve sınıra yaklaşıldığında ne olacağını açıkça belirtiyor."
+          }
+        ]
+      }
+    }
+  }
+}
