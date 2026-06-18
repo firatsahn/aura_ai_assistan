@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Aura RAG · Konsol</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<div class="app">
+  <!-- ── Sidebar ─────────────────────────────────────────── -->
+  <aside class="sidebar">
+    <div class="brand">
+      <div class="logo">A</div>
+      <div>
+        <div class="name">Aura RAG</div>
+        <div class="tag">Bilgi tabanı konsolu</div>
+      </div>
+    </div>
+
+    <div class="nav-label">Çalışma alanı</div>
+    <button class="nav active" data-tab="chat" data-title="Sohbet" data-crumb="Soru sor, kaynaklı cevap al">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+      <span>Sohbet</span>
+    </button>
+    <button class="nav" data-tab="metrics" data-title="Metrikler" data-crumb="Dense vs hybrid değerlendirme">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><rect x="7" y="11" width="3" height="6"/><rect x="12" y="7" width="3" height="10"/><rect x="17" y="13" width="3" height="4"/></svg>
+      <span>Metrikler</span>
+    </button>
+    <button class="nav" data-tab="arch" data-title="Mimari" data-crumb="Uçtan uca veri akışı">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="5" rx="1"/><rect x="4" y="16" width="16" height="5" rx="1"/><path d="M12 8v8M8 12h8"/></svg>
+      <span>Mimari</span>
+    </button>
+    <button class="nav" data-tab="flow" data-title="Prompt akışı" data-crumb="Pipeline izini canlı gör">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M9 6h6a3 3 0 0 1 3 3v0a3 3 0 0 1-3 3H9"/><path d="M6 9v6"/></svg>
+      <span>Prompt akışı</span>
+    </button>
+
+    <div class="spacer"></div>
+    <div class="status">
+      <span class="dot" id="hdot"></span>
+      <span id="hstatus">Bağlantı kontrol ediliyor…</span>
+    </div>
+  </aside>
+
+  <!-- ── Main ────────────────────────────────────────────── -->
+  <div class="main">
+    <header class="topbar">
+      <div>
+        <h1 id="pageTitle">Sohbet</h1>
+        <div class="crumb" id="pageCrumb">Soru sor, kaynaklı cevap al</div>
+      </div>
+      <span class="chip acc">Aura akıllı ev · TR korpus</span>
+    </header>
+
+    <div class="content">
+      <!-- Sohbet -->
+      <section class="panel active" id="chat">
+        <div class="card">
+          <label>Soru</label>
+          <textarea id="q" placeholder="ör. E-102 hata kodu ne anlama gelir?"></textarea>
+          <div class="row">
+            <div>
+              <label>Retrieval modu</label>
+              <select id="mode">
+                <option value="dense">dense (baseline)</option>
+                <option value="hybrid">hybrid (dense + BM25)</option>
+              </select>
+            </div>
+            <div>
+              <label>top_k</label>
+              <input id="topk" type="number" value="5" min="1" max="20" />
+            </div>
+          </div>
+          <div class="btns">
+            <button class="primary" id="ask">Sor</button>
+            <span class="hint">Ctrl/Cmd + Enter ile gönder</span>
+          </div>
+        </div>
+        <div id="chatOut">
+          <div class="card"><div class="placeholder"><div class="ic">💬</div>Henüz soru sorulmadı. Yukarıdan bir soru gönder.</div></div>
+        </div>
+      </section>
+
+      <!-- Metrikler -->
+      <section class="panel" id="metrics">
+        <div id="metricsOut">
+          <div class="card"><div class="placeholder"><span class="spinner"></span></div></div>
+        </div>
+      </section>
+
+      <!-- Mimari -->
+      <section class="panel" id="arch">
+        <div class="card">
+          <div class="card-hd"><h2>Veri akışı · korpus → cevap</h2></div>
+          <div class="flow">
+            <div class="stage"><div class="num">1</div><h3>Korpus</h3>
+              <p>8 heterojen doküman: Markdown, native + taranmış PDF, PNG (LED görseli), XLSX (hata kodları). Tamamı Türkçe.</p></div>
+            <div class="arrow">↓</div>
+            <div class="stage"><div class="num">2</div><h3>Ingestion</h3>
+              <p>Tip bazlı loader → vision (görsel & taranmış PDF, disk cache) → heading-aware chunker. Çıktı: <code>data/chunks.jsonl</code> (≈151 chunk).</p></div>
+            <div class="arrow">↓</div>
+            <div class="stage"><div class="num">3</div><h3>Indexleme · Qdrant</h3>
+              <p>Her chunk için dense embedding (text-embedding-3-small, 1536d) + BM25 sparse vektör → <code>aura_corpus</code> koleksiyonuna upsert.</p></div>
+            <div class="arrow">↓</div>
+            <div class="stage"><div class="num">4</div><h3>Retrieval</h3>
+              <p>dense (kosinüs) veya hybrid (dense + BM25, RRF füzyonu). Çekimser kapısı: dense top-1 skor &lt; 0.38 ise model çağrılmadan “bulamadım”.</p></div>
+            <div class="arrow">↓</div>
+            <div class="stage"><div class="num">5</div><h3>Generation</h3>
+              <p>gpt-4o-mini, sıcaklık 0. Yalnızca getirilen bağlama dayanır, kaynak belirtir, bağlam yetersizse yine çekimser kalır.</p></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Prompt akışı -->
+      <section class="panel" id="flow">
+        <div class="card">
+          <label>Soru</label>
+          <textarea id="fq" placeholder="ör. internet bağlantısı yoksa LED ne yapar?"></textarea>
+          <div class="row">
+            <div>
+              <label>Retrieval modu</label>
+              <select id="fmode">
+                <option value="dense">dense (baseline)</option>
+                <option value="hybrid">hybrid (dense + BM25)</option>
+              </select>
+            </div>
+            <div>
+              <label>top_k</label>
+              <input id="ftopk" type="number" value="5" min="1" max="20" />
+            </div>
+          </div>
+          <div class="btns">
+            <button class="primary" id="fask">Akışı çalıştır</button>
+            <span class="hint">embed → ara → skorlar → çekimser kararı → cevap</span>
+          </div>
+        </div>
+        <div id="flowOut">
+          <div class="card"><div class="placeholder"><div class="ic">🔎</div>Pipeline izini görmek için bir soru çalıştır.</div></div>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>

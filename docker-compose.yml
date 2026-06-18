@@ -1,6 +1,7 @@
-# Brings the whole system up with a single `docker compose up`.
-# Ships the vector store (Step 2) and the RAG API (Step 3a); the frontend
-# service lands in a later step.
+# Brings the whole system up with a single `docker compose up`: the vector store
+# (Step 2) plus the RAG API and single-page frontend (Step 3a + Step 5). Two
+# services only — the frontend is static and served by the backend at :4242, so
+# it needs no container of its own.
 services:
   qdrant:
     image: qdrant/qdrant:latest
@@ -17,14 +18,16 @@ services:
       timeout: 5s
       retries: 5
 
-  # RAG API (Step 3a). POST /query -> grounded answer (or abstention) + sources.
+  # RAG API + frontend (Step 3a + Step 5). On start it auto-indexes the prebuilt
+  # chunks if the collection is empty (see backend/entrypoint.sh), then serves
+  # POST /query, GET /metrics, GET /health, and the static UI at /.
   backend:
     build:
       context: .
       dockerfile: backend/Dockerfile
     container_name: aura_backend
     ports:
-      - "4242:4242"   # http://localhost:4242  (POST /query, GET /health, /docs)
+      - "4242:4242"   # http://localhost:4242  (UI, POST /query, /metrics, /health, /docs)
     env_file:
       - .env          # OPENAI_API_KEY, GENERATION_MODEL, ABSTENTION_THRESHOLD, ...
     environment:
