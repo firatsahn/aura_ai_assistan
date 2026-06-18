@@ -4,3 +4,7 @@ openpyxl>=3.1.0       # XLSX reading (row-wise)
 anthropic>=0.40.0     # Claude vision for scanned PDF / image docs (default provider)
 google-genai>=1.0.0   # Gemini vision (alternative provider, VISION_PROVIDER=gemini)
 python-dotenv>=1.0.0  # load credentials / provider config from .env
+
+# Embedding & vector store (Step 2) dependencies
+openai>=1.0.0         # text-embedding-3-small (document + query embeddings)
+qdrant-client>=1.7.0  # vector store client (collection schema, upsert, search)
