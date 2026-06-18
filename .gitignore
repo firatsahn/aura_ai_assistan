@@ -86,3 +86,6 @@ scratch-ui.html
 .DS_Store
 Thumbs.db
 *.swp
+
+# Local throwaway manual-test UI (not part of the app)
+test_ui.html

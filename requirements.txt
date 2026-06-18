@@ -7,7 +7,7 @@ python-dotenv>=1.0.0  # load credentials / provider config from .env
 
 # Embedding & vector store (Step 2) dependencies
 openai>=1.0.0         # text-embedding-3-small embeddings + gpt-4o-mini generation
-qdrant-client>=1.7.0  # vector store client (collection schema, upsert, search)
+qdrant-client>=1.10.0 # vector store client; >=1.10 for Query API (RRF fusion) + sparse IDF (Step 3b hybrid)
 
 # Generation & API (Step 3a) dependencies
 fastapi>=0.110.0          # POST /query endpoint (frontend + eval entry point)

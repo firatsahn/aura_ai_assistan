@@ -10,7 +10,7 @@ server. `GET /health` exists for the Docker healthcheck and smoke tests.
 
 from __future__ import annotations
 
-from typing import Any
+from typing import Any, Literal
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
@@ -33,6 +33,9 @@ app.add_middleware(
 class QueryRequest(BaseModel):
     question: str = Field(..., min_length=1, description="Kullanıcının sorusu")
     top_k: int = Field(5, ge=1, le=20, description="Getirilecek chunk sayısı")
+    retrieval_mode: Literal["dense", "hybrid"] = Field(
+        "dense", description="Retrieval: dense baseline veya hybrid (dense+sparse)"
+    )
 
 
 @app.get("/health")
@@ -42,4 +45,6 @@ def health() -> dict[str, str]:
 
 @app.post("/query")
 def query(req: QueryRequest) -> dict[str, Any]:
-    return answer_question(req.question, top_k=req.top_k)
+    return answer_question(
+        req.question, top_k=req.top_k, retrieval_mode=req.retrieval_mode
+    )
