@@ -19,6 +19,9 @@ COPY data/chunks.jsonl ./data/chunks.jsonl
 COPY eval/results.json ./eval/results.json
 COPY frontend/ ./frontend/
 
+# Design/rationale docs served read-only by the "Kararlar" tab (/decisions/{lang}).
+COPY DECISIONS.md DECISIONS.tr.md ./
+
 # Startup script: guarded auto-index, then uvicorn.
 RUN chmod +x ./backend/entrypoint.sh
 

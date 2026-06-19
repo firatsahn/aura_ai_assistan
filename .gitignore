@@ -1,11 +1,7 @@
 # ----------------------------------------------------------------------------
 # ----------------------------------------------------------------------------
 brief.pdf
-doc/
 *.Zone.Identifier
-
-DECISIONS.md
-DECISIONS.tr.md
 
 # ----------------------------------------------------------------------------
 # Environment variables and secrets
@@ -50,12 +46,7 @@ yarn-error.log*
 # ----------------------------------------------------------------------------
 # Vector store / local data / model weights
 # ----------------------------------------------------------------------------
-data/
 storage/
-
-# Ingestion output (generated chunk list — Step 1)
-chunks.jsonl
-chunks.json
 
 *.sqlite
 *.sqlite3

@@ -5,6 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Aura RAG · Konsol</title>
 <link rel="stylesheet" href="style.css" />
+<script>
+  // Apply the saved theme before first paint to avoid a flash. Light is default.
+  (function () {
+    var t = localStorage.getItem("aura-theme") || "light";
+    document.documentElement.setAttribute("data-theme", t);
+  })();
+</script>
 </head>
 <body>
 <div class="app">
@@ -35,6 +42,10 @@
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M9 6h6a3 3 0 0 1 3 3v0a3 3 0 0 1-3 3H9"/><path d="M6 9v6"/></svg>
       <span>Prompt akışı</span>
     </button>
+    <button class="nav" data-tab="decisions" data-title="Kararlar" data-crumb="Tasarım & gerekçe dokümanı">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M8 13h8M8 17h8M8 9h2"/></svg>
+      <span>Kararlar</span>
+    </button>
 
     <div class="spacer"></div>
     <div class="status">
@@ -50,7 +61,13 @@
         <h1 id="pageTitle">Sohbet</h1>
         <div class="crumb" id="pageCrumb">Soru sor, kaynaklı cevap al</div>
       </div>
-      <span class="chip acc">Aura akıllı ev · TR korpus</span>
+      <div class="right">
+        <span class="chip acc">Aura akıllı ev · TR korpus</span>
+        <button class="theme-toggle" id="themeToggle" title="Tema değiştir" aria-label="Tema değiştir">
+          <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+        </button>
+      </div>
     </header>
 
     <div class="content">
@@ -137,6 +154,22 @@
         </div>
         <div id="flowOut">
           <div class="card"><div class="placeholder"><div class="ic">🔎</div>Pipeline izini görmek için bir soru çalıştır.</div></div>
+        </div>
+      </section>
+
+      <!-- Kararlar -->
+      <section class="panel" id="decisions">
+        <div class="card">
+          <div class="card-hd">
+            <h2>Tasarım & gerekçe dokümanı</h2>
+            <div class="seg" id="docLang">
+              <button class="active" data-lang="tr">TR</button>
+              <button data-lang="en">EN</button>
+            </div>
+          </div>
+          <div id="docOut" class="md">
+            <div class="placeholder"><span class="spinner"></span></div>
+          </div>
         </div>
       </section>
     </div>

@@ -21,6 +21,7 @@ from typing import Any, Literal
 
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import PlainTextResponse
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, Field
 
@@ -31,6 +32,9 @@ _ROOT = Path(__file__).resolve().parent.parent
 # Overridable so the Docker image can point at its own copied paths.
 METRICS_PATH = Path(os.environ.get("METRICS_PATH", _ROOT / "eval" / "results.json"))
 FRONTEND_DIR = Path(os.environ.get("FRONTEND_DIR", _ROOT / "frontend"))
+# The design/rationale docs, surfaced in the frontend's "Kararlar" tab.
+DECISIONS_DIR = Path(os.environ.get("DECISIONS_DIR", _ROOT))
+DECISIONS_FILES = {"tr": "DECISIONS.tr.md", "en": "DECISIONS.md"}
 
 app = FastAPI(title="Aura RAG API", version="0.1.0")
 
@@ -80,6 +84,18 @@ def metrics() -> dict[str, Any]:
             "Önce `python -m eval.run` çalıştırın.",
         )
     return json.loads(METRICS_PATH.read_text(encoding="utf-8"))
+
+
+@app.get("/decisions/{lang}", response_class=PlainTextResponse)
+def decisions(lang: str) -> str:
+    """Serve the DECISIONS doc (raw Markdown) for the frontend's Kararlar tab."""
+    name = DECISIONS_FILES.get(lang)
+    if name is None:
+        raise HTTPException(status_code=404, detail="Bilinmeyen dil (tr|en).")
+    path = DECISIONS_DIR / name
+    if not path.is_file():
+        raise HTTPException(status_code=404, detail=f"{name} bulunamadı.")
+    return path.read_text(encoding="utf-8")
 
 
 # Mount the static frontend LAST so explicit API routes above take precedence;

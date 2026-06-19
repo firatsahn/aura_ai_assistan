@@ -7,8 +7,20 @@ const esc = (s) =>
 const fmt = (n) => (n === null || n === undefined ? "—" : Number(n).toFixed(4));
 const pct = (n) => (n === null || n === undefined ? "—" : (Number(n) * 100).toFixed(1) + "%");
 
+// ── Theme toggle (light default / dark) ────────────────────
+const themeBtn = $("#themeToggle");
+if (themeBtn) {
+  themeBtn.onclick = () => {
+    const next =
+      document.documentElement.getAttribute("data-theme") === "dark" ? "light" : "dark";
+    document.documentElement.setAttribute("data-theme", next);
+    localStorage.setItem("aura-theme", next);
+  };
+}
+
 // ── Navigation ─────────────────────────────────────────────
 let metricsLoaded = false;
+let decisionsLoaded = false;
 document.querySelectorAll(".nav").forEach((nav) => {
   nav.onclick = () => {
     document.querySelectorAll(".nav").forEach((n) => n.classList.remove("active"));
@@ -18,6 +30,7 @@ document.querySelectorAll(".nav").forEach((nav) => {
     $("#pageTitle").textContent = nav.dataset.title;
     $("#pageCrumb").textContent = nav.dataset.crumb;
     if (nav.dataset.tab === "metrics" && !metricsLoaded) loadMetrics();
+    if (nav.dataset.tab === "decisions" && !decisionsLoaded) loadDecisions(decisionsLang);
   };
 });
 
@@ -271,4 +284,144 @@ async function runFlow() {
 $("#fask").onclick = runFlow;
 $("#fq").addEventListener("keydown", (e) => {
   if ((e.ctrlKey || e.metaKey) && e.key === "Enter") runFlow();
+});
+
+// ── Kararlar (DECISIONS) ───────────────────────────────────
+// A tiny dependency-free Markdown renderer — enough for the DECISIONS docs
+// (headings, lists, tables, code fences, blockquotes, bold/inline code, links).
+// Served offline from the backend, so no CDN/build step.
+function inline(s) {
+  return esc(s)
+    .replace(/`([^`]+)`/g, (_, c) => `<code>${c}</code>`)
+    .replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>")
+    .replace(
+      /\[([^\]]+)\]\(([^)]+)\)/g,
+      (_, t, u) => `<a href="${u}" target="_blank" rel="noopener">${t}</a>`
+    );
+}
+
+function renderMarkdown(md) {
+  const lines = md.replace(/\r\n/g, "\n").split("\n");
+  const out = [];
+  let i = 0;
+  const cells = (row) =>
+    row.replace(/^\||\|$/g, "").split("|").map((c) => c.trim());
+
+  while (i < lines.length) {
+    const line = lines[i];
+
+    // Fenced code block (mermaid/text rendered as plain code).
+    const fence = line.match(/^```(\w*)/);
+    if (fence) {
+      const buf = [];
+      i++;
+      while (i < lines.length && !lines[i].startsWith("```")) buf.push(lines[i++]);
+      i++; // closing fence
+      out.push(`<pre><code>${esc(buf.join("\n"))}</code></pre>`);
+      continue;
+    }
+
+    // Table: a pipe row followed by a |---|---| separator.
+    if (/^\|.*\|/.test(line) && i + 1 < lines.length && /^\|[\s:|-]+\|/.test(lines[i + 1])) {
+      const head = cells(line);
+      i += 2; // header + separator
+      const body = [];
+      while (i < lines.length && /^\|.*\|/.test(lines[i])) body.push(cells(lines[i++]));
+      const th = head.map((c) => `<th>${inline(c)}</th>`).join("");
+      const tr = body
+        .map((r) => `<tr>${r.map((c) => `<td>${inline(c)}</td>`).join("")}</tr>`)
+        .join("");
+      out.push(`<table><thead><tr>${th}</tr></thead><tbody>${tr}</tbody></table>`);
+      continue;
+    }
+
+    // Heading.
+    const h = line.match(/^(#{1,6})\s+(.*)$/);
+    if (h) {
+      const lvl = h[1].length;
+      out.push(`<h${lvl}>${inline(h[2])}</h${lvl}>`);
+      i++;
+      continue;
+    }
+
+    // Horizontal rule.
+    if (/^\s*---+\s*$/.test(line)) {
+      out.push("<hr />");
+      i++;
+      continue;
+    }
+
+    // Blockquote.
+    if (/^>\s?/.test(line)) {
+      const buf = [];
+      while (i < lines.length && /^>\s?/.test(lines[i])) buf.push(lines[i++].replace(/^>\s?/, ""));
+      out.push(`<blockquote>${inline(buf.join(" "))}</blockquote>`);
+      continue;
+    }
+
+    // List (unordered or ordered). Continuation lines fold into the last item.
+    if (/^\s*([-*]|\d+\.)\s+/.test(line)) {
+      const ordered = /^\s*\d+\.\s+/.test(line);
+      const items = [];
+      while (i < lines.length && (/^\s*([-*]|\d+\.)\s+/.test(lines[i]) || (/^\s{2,}\S/.test(lines[i]) && items.length))) {
+        const m = lines[i].match(/^\s*([-*]|\d+\.)\s+(.*)$/);
+        if (m) items.push(m[2]);
+        else items[items.length - 1] += " " + lines[i].trim();
+        i++;
+      }
+      const li = items.map((t) => `<li>${inline(t)}</li>`).join("");
+      out.push(ordered ? `<ol>${li}</ol>` : `<ul>${li}</ul>`);
+      continue;
+    }
+
+    // Blank line.
+    if (/^\s*$/.test(line)) {
+      i++;
+      continue;
+    }
+
+    // Paragraph: gather consecutive plain lines.
+    const buf = [line];
+    i++;
+    while (
+      i < lines.length &&
+      !/^\s*$/.test(lines[i]) &&
+      !/^(#{1,6}\s|```|>\s?|\s*---+\s*$|\s*([-*]|\d+\.)\s)/.test(lines[i]) &&
+      !/^\|.*\|/.test(lines[i])
+    ) {
+      buf.push(lines[i++]);
+    }
+    out.push(`<p>${inline(buf.join(" "))}</p>`);
+  }
+  return out.join("\n");
+}
+
+let decisionsLang = "tr";
+const decisionsCache = {};
+
+async function loadDecisions(lang) {
+  decisionsLang = lang;
+  document.querySelectorAll("#docLang button").forEach((b) =>
+    b.classList.toggle("active", b.dataset.lang === lang)
+  );
+  const el = $("#docOut");
+  if (decisionsCache[lang]) {
+    el.innerHTML = decisionsCache[lang];
+    return;
+  }
+  el.innerHTML = `<div class="placeholder"><span class="spinner"></span></div>`;
+  try {
+    const res = await fetch("/decisions/" + lang);
+    if (!res.ok) throw new Error("HTTP " + res.status);
+    const html = renderMarkdown(await res.text());
+    decisionsCache[lang] = html;
+    el.innerHTML = html;
+    decisionsLoaded = true;
+  } catch (e) {
+    el.innerHTML = `<div class="err">Doküman yüklenemedi: ${esc(e.message)}</div>`;
+  }
+}
+
+document.querySelectorAll("#docLang button").forEach((b) => {
+  b.onclick = () => loadDecisions(b.dataset.lang);
 });

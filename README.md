@@ -1,6 +1,6 @@
 # Aura AI Assistant — Grounded RAG Support Assistant
 
-> ⚠️ **Draft.** This README will be updated as the  progresses.
+**🇬🇧 English** · [🇹🇷 Türkçe](README.tr.md)
 
 A Retrieval-Augmented Generation (RAG) support assistant for a B2B SaaS scenario.
 It answers end-user questions strictly from a customer's knowledge base and **every
@@ -47,7 +47,7 @@ User ──> Frontend ──> Backend API
       Vector Store  <── Ingestion ── Corpus (PDF / image / Excel / md)
 ```
 
-> _Diagram is a draft; final components are justified in `DECISIONS.md`._
+> Component choices are justified in [`DECISIONS.md`](DECISIONS.md).
 
 ## Corpus
 
@@ -80,42 +80,113 @@ cp .env.example .env
 
 | Variable            | Description                                                  | Required |
 |---------------------|--------------------------------------------------------------|----------|
-| `ANTHROPIC_API_KEY` | Claude key — generation (`claude-opus-4-8`) and Claude vision | Yes      |
-| `OPENAI_API_KEY`    | OpenAI key — embeddings (`text-embedding-3-small`)            | Yes      |
+| `OPENAI_API_KEY`    | OpenAI key — embeddings (`text-embedding-3-small`) **and** generation (`gpt-4o-mini`) | Yes |
+| `ANTHROPIC_API_KEY` | Claude key — default vision provider for scanned/image docs (`claude-opus-4-8`) | Yes¹ |
+| `GEMINI_API_KEY`    | Gemini key — alternative vision provider (`VISION_PROVIDER=gemini`) | Yes¹ |
+| `VISION_PROVIDER`   | `anthropic` (default) or `gemini`; blank auto-detects from whichever key is set | No |
+| `GENERATION_MODEL`  | Generation model override (default `gpt-4o-mini`)            | No       |
 | `EMBEDDING_MODEL`   | Embedding model override (default `text-embedding-3-small`)   | No       |
+| `ABSTENTION_THRESHOLD` | Below this top retrieval score the system abstains (default `0.38`) | No |
 | `QDRANT_URL`        | Vector store URL (`http://localhost:6333`, or `http://qdrant:6333` in Compose) | No |
 | `QDRANT_COLLECTION` | Qdrant collection name (default `aura_corpus`)               | No       |
-| `GEMINI_API_KEY`    | Gemini key — alternative vision provider (`VISION_PROVIDER=gemini`) | No  |
 
-> _Full list will be finalized as the implementation progresses._
+> ¹ A vision key is only needed to **re-run ingestion** on the raw corpus. The
+> prebuilt `data/chunks.jsonl` is committed, so a normal `docker compose up` boot
+> indexes from it and needs **only `OPENAI_API_KEY`** (embeddings + generation).
 
 ## Setup & Run (Docker)
 
-The whole system (backend + frontend + vector store) comes up with a single command:
+The entire system — backend, frontend, and vector store — is brought up with a single
+command. `docker-compose.yml` defines two services: **Qdrant** (vector store) and
+**backend** (the RAG API, which also serves the static frontend; no separate frontend
+container is required).
+
+### 1. Initial build
 
 ```bash
+cp .env.example .env      # then set OPENAI_API_KEY (see Environment Variables)
 docker compose up --build
 ```
 
-- Frontend: http://localhost:3000
-- Backend API: http://localhost:8000
+The `--build` flag compiles the backend image. On startup, the backend performs a
+**guarded auto-index** (`backend/entrypoint.sh`): if the Qdrant collection is empty, it
+embeds the prebuilt `data/chunks.jsonl`, upserts the vectors, and then serves the API.
+The costly ingestion/vision pipeline is **not** re-run — the chunk list is committed and
+baked into the image.
+
+Once the stack is up, the following endpoints are available:
+
+- **Application (UI + API):** http://localhost:4242
+- **API endpoints:** `POST /query`, `GET /metrics`, `GET /decisions/{tr|en}`, `GET /health`, `GET /docs`
+- **Qdrant dashboard:** http://localhost:6333/dashboard
+
+### 2. Subsequent runs
+
+After the images are built, no rebuild is necessary. Qdrant data is persisted in a named
+Docker volume (`qdrant_storage`), so the index is reused across restarts and the
+auto-index step is skipped automatically when a populated collection is detected:
+
+```bash
+docker compose up            # start (reuses built images and indexed volume)
+docker compose up -d         # start in detached (background) mode
+docker compose down          # stop (volume retained → data persists)
+docker compose down -v       # stop and wipe the Qdrant volume (forces a re-index on next boot)
+```
+
+Rebuild only after code changes: `docker compose up --build`.
+
+### 3. Running from a fresh git clone (with a `.env` you were given)
+
+This is the common handover case: someone shares a ready `.env` with you, you clone the
+repository, and you want it running. The project is self-contained — the corpus index
+(`data/chunks.jsonl`) is committed and baked into the image — so a clean clone plus a
+valid `.env` is all that is required. No ingestion or vision step is involved.
+
+```bash
+# 1. Clone the repository
+git clone <repo> && cd project
+
+# 2. Place the .env you were given at the project root (next to docker-compose.yml).
+#    It is gitignored, so it never arrives via the clone — copy it in yourself:
+cp /path/to/the/.env .env
+#    ... or copy it from another machine:
+#    scp user@host:/path/to/.env .env
+#    (Alternatively, recreate it from the template: cp .env.example .env, then fill it in.)
+
+# 3. Build and start
+docker compose up --build
+```
+
+The app is then served at **http://localhost:4242**.
+
+**Notes:**
+
+- `.env` is **gitignored** and is never part of the clone — it must always be transferred
+  out of band (shared file, `scp`, secrets manager) or recreated from `.env.example`.
+- Only `OPENAI_API_KEY` is required for a normal boot (embeddings + generation). A vision
+  key (`ANTHROPIC_API_KEY` or `GEMINI_API_KEY`) is needed solely to re-run ingestion on
+  the raw `doc/` corpus.
+- Within Compose, the backend reaches Qdrant by service name; `QDRANT_URL` is overridden
+  to `http://qdrant:6333` automatically, so it need not be set in `.env`.
 
 ## Ingestion (Indexing the Corpus)
 
-Processes the corpus (PDF, images, Excel/CSV, markdown) and loads it into the vector
-store, preserving the structure and context of visual and tabular content.
+This step processes the corpus (PDF, images, Excel/CSV, markdown) and loads it into the
+vector store, preserving the structure and context of visual and tabular content. It is
+only required when re-indexing the raw corpus; a standard boot uses the prebuilt
+`data/chunks.jsonl`.
 
 ```bash
-# 1. Start the vector store (Qdrant). Web UI: http://localhost:6333/dashboard
+# 1. Start the vector store (Qdrant). Dashboard: http://localhost:6333/dashboard
 docker compose up -d qdrant
 
-# 2. Step 1 — read the corpus into a tagged chunk list
+# 2. Read the corpus into a tagged chunk list
 python -m backend.ingestion.run --doc-dir doc --out data/chunks.jsonl
 
-# 3. Step 2 — embed every chunk and load it into Qdrant
+# 3. Embed each chunk and load it into Qdrant
 python -m backend.index
 
-# Verify: a query whose answer lives only in an image (the LED card, doc 03)
+# Verify with a query whose answer exists only in an image (the LED card, doc 03)
 python -m backend.index --query "internet bağlantısı yok"
 ```
 
@@ -140,17 +211,17 @@ self-bias). See **[`DECISIONS.md`](DECISIONS.md#evaluation-step-4)** for methodo
 
 ```
 .
-├── backend/          # RAG API (ingestion, retrieval, generation)
-├── frontend/         # Simple web UI (question → answer → sources)
+├── backend/          # RAG API (ingestion, retrieval, generation) + serves the frontend
+├── frontend/         # Static web UI (chat, metrics, architecture, prompt-flow, decisions)
 ├── eval/             # Evaluation harness + golden set
 ├── docker-compose.yml
-├── README.md
-├── DECISIONS.md      # Design & rationale document
+├── README.md         # This file (English)
+├── README.tr.md      # Turkish README
+├── DECISIONS.md      # Design & rationale document (English)
+├── DECISIONS.tr.md   # Design & rationale document (Turkish)
 ├── brief.pdf         # Case study brief (git-ignored)
 └── doc/              # Corpus documents (git-ignored)
 ```
-
-> _Structure is a draft and will be updated during development._
 
 ## Key Decisions
 
